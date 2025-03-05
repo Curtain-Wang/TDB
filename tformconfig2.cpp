@@ -1,0 +1,79 @@
+#include "tformconfig2.h"
+#include "ui_tformconfig2.h"
+#include "mainwindow.h"
+#include "globalparam.h"
+TFormConfig2::TFormConfig2(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::TFormConfig2)
+    , mainwindow(qobject_cast<MainWindow*>(parent))
+{
+    ui->setupUi(this);
+    //设置窗口标志，确保有边框和标题栏、最小化、关闭，最大化
+    setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+
+    init();
+}
+
+TFormConfig2::~TFormConfig2()
+{
+    delete ui;
+}
+
+void TFormConfig2::init()
+{
+    //寄存器地址和LineEdit映射
+    addrEditHash[1318] = ui->l1318;
+    addrEditHash[1321] = ui->l1321;
+    addrEditHash[1322] = ui->l1322;
+    addrEditHash[1323] = ui->l1323;
+    addrEditHash[1326] = ui->l1326;
+    addrEditHash[1327] = ui->l1327;
+    addrEditHash[1328] = ui->l1328;
+    addrEditHash[1329] = ui->l1329;
+    addrEditHash[1330] = ui->l1330;
+    addrEditHash[1336] = ui->l1336;
+    addrEditHash[1337] = ui->l1337;
+    addrEditHash[1531] = ui->l1531;
+    addrEditHash[1532] = ui->l1532;
+    addrFormatHash[1318] = 2;
+    addrFormatHash[1321] = 2;
+    addrFormatHash[1322] = 0;
+    addrFormatHash[1323] = 0;
+    addrFormatHash[1326] = 2;
+    addrFormatHash[1327] = 0;
+    addrFormatHash[1328] = 2;
+    addrFormatHash[1329] = 0;
+    addrFormatHash[1330] = 0;
+    addrFormatHash[1336] = 2;
+    addrFormatHash[1337] = 2;
+    addrFormatHash[1531] = 0;
+    addrFormatHash[1532] = 0;
+    sendGetData1Cmd();
+}
+
+void TFormConfig2::sendGetData1Cmd()
+{
+    mainwindow->manualReadCMDBuild(0x05, 0x26, 0x00, 0x14);
+}
+
+void TFormConfig2::annalyzeData(QByteArray data)
+{
+    for (int i = 0; i < data.length(); i += 2)
+    {
+        quint16 addr = lastStartAddr + i / 2;
+        if(addrEditHash.value(addr, nullptr) == nullptr)
+        {
+            continue;
+        }
+        quint16 high = static_cast<quint16>(data[i]);
+        quint16 low = data[i + 1];
+        quint16 value = ((high << 8) | low);
+        addrEditHash[addr]->setText(QString::number(static_cast<float>(value * 1.0/ qPow(10, addrFormatHash[addr]), 'f', addrFormatHash[addr])));
+    }
+}
+
+void TFormConfig2::sendGetData2Cmd()
+{
+    mainwindow->manualReadCMDBuild(0x05, 0xFB, 0x00, 0x02);
+}
+
