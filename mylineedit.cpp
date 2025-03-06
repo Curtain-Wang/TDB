@@ -16,6 +16,12 @@ void MyLineEdit::onTFormDestroyed(QObject *obj)
 
 void MyLineEdit::mousePressEvent(QMouseEvent *event)
 {
+    //信号屏蔽之后，不触发
+    if(signalsBlocked())
+    {
+        return;
+    }
+
     // 调用父类的 mousePressEvent 方法，确保原有功能正常
     QLineEdit::mousePressEvent(event);
 

@@ -69,6 +69,7 @@ void TFormConfig2::init()
 void TFormConfig2::sendGetData1Cmd()
 {
     mainwindow->manualReadCMDBuild(0x05, 0x26, 0x00, 0x14);
+    lastStartAddr = 1318;
 }
 
 void TFormConfig2::annalyzeData(quint8* data, quint16 length)
@@ -86,6 +87,7 @@ void TFormConfig2::annalyzeData(quint8* data, quint16 length)
 void TFormConfig2::sendGetData2Cmd()
 {
     mainwindow->manualReadCMDBuild(0x05, 0xFB, 0x00, 0x02);
+    lastStartAddr = 1531;
 }
 
 void TFormConfig2::annalyzeOneData(quint16 addr, quint16 value)

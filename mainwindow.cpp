@@ -10,6 +10,7 @@
 #include "tformconfig1.h"
 #include "tformconfig2.h"
 #include "tform7.h"
+#include "tform3.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , serialPort(new QSerialPort(this))
@@ -255,6 +256,12 @@ void MainWindow::dealMessage(const QByteArray &data)
             {
                 tformConfig2->annalyzeData(dataPtr, dataBuf.length());
             }
+        }else if(lastStartAddr == 48)//校准界面
+        {
+            if(tform3 != nullptr)
+            {
+                tform3->annalyzeData(dataPtr, dataBuf.length());
+            }
         }
     }
     else if(data[1] == WRITE_ONE_CMD)
@@ -312,6 +319,11 @@ void MainWindow::refershData(quint8* data, quint16 length)
     ui->label_37->setText(getWarnText(warnValue).append(getProtText(protValue)));
     quint16 workValue = ((data[length - 2] << 8) | data[length - 1]);
     ui->label_39->setText(getWorkText(workValue));
+    reg1024Value = ((data[0] << 8) | data[1]);
+    reg1025Value = ((data[2] << 8) | data[3]);
+    reg1027Value = ((data[6] << 8) | data[7]);
+    reg1028Value = ((data[8] << 8) | data[9]);
+    tform3->refreshRealTimeData();
 }
 
 QString MainWindow::getWarnText(quint16 value)
@@ -671,6 +683,10 @@ void MainWindow::onTFormDestroyed(QObject *obj)
     {
         tformConfig2 = nullptr;
     }
+    if(obj == tform3)
+    {
+        tform3 = nullptr;
+    }
 }
 
 
@@ -695,5 +711,17 @@ void MainWindow::on_pushButton_6_clicked()
         connect(tform1, &TForm1::destroyed, this, &MainWindow::onTFormDestroyed);
     }
     tform1->show();
+}
+
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    if(tform3 == nullptr)
+    {
+        tform3 = new TForm3(this);
+        tform3->setAttribute(Qt::WA_DeleteOnClose);
+        connect(tform3, &TForm3::destroyed, this, &MainWindow::onTFormDestroyed);
+    }
+    tform3->show();
 }
 

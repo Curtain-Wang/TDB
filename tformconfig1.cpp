@@ -84,6 +84,7 @@ void TFormConfig1::init()
 void TFormConfig1::sendGetDataCmd()
 {
     mainwindow->manualReadCMDBuild(0x05, 0x00, 0x00, 0x26);
+    lastStartAddr = 1280;
 }
 
 void TFormConfig1::annalyzeData(quint8* data, quint16 length)

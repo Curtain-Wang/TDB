@@ -25,6 +25,7 @@ extern int mainAddrStart;
 extern int config1AddrStart;
 extern int config2AddrStart1;
 extern int config2AddrStart2;
+extern int kbAddrStart;
 extern const int BR;
 extern QString connStatus;
 extern QString runningStatus;
@@ -32,4 +33,8 @@ extern MainWindow* mainwindow;
 extern QHash<quint16, QLineEdit*> addrEditHash;
 extern QHash<quint16, quint8> addrFormatHash;
 extern QHash<quint16, quint8> addrSignHash;
+extern quint16 reg1024Value;
+extern qint16 reg1025Value;
+extern quint16 reg1027Value;
+extern qint16 reg1028Value;
 #endif // GLOBALPARAM_H

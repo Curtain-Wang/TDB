@@ -14,6 +14,7 @@ SOURCES += \
     mainwindow.cpp \
     mylineedit.cpp \
     tform1.cpp \
+    tform3.cpp \
     tform7.cpp \
     tformconfig1.cpp \
     tformconfig2.cpp
@@ -23,6 +24,7 @@ HEADERS += \
     mainwindow.h \
     mylineedit.h \
     tform1.h \
+    tform3.h \
     tform7.h \
     tformconfig1.h \
     tformconfig2.h
@@ -30,6 +32,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui \
     tform1.ui \
+    tform3.ui \
     tform7.ui \
     tformconfig1.ui \
     tformconfig2.ui

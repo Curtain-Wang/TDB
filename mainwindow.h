@@ -9,6 +9,7 @@ class TFormConfig1;
 class TFormConfig2;
 class QLabel;
 class TForm7;
+class TForm3;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -50,11 +51,14 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_pushButton_8_clicked();
+
 private:
     Ui::MainWindow *ui;
     TForm1* tform1 = nullptr;
     TFormConfig1* tformConfig1 = nullptr;
     TFormConfig2* tformConfig2 = nullptr;
+    TForm3* tform3 = nullptr;
     QSerialPort* serialPort;
     QTimer* sendTimer = nullptr;
     QTimer* receiveTimer = nullptr;
