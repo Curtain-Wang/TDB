@@ -2,6 +2,7 @@
 #include <QByteArray>
 #include <QString>
 #include <mainwindow.h>
+#include <QLineEdit>
 int waitMessageRemaingTime = 0;
 int dataRefreshRemaingTime = 0;
 //手动标记，0自动 1手动 2双手动
@@ -25,3 +26,6 @@ const int BR = 19200;
 QString connStatus = "连接状态：%1";
 QString runningStatus = "运行模式：%1";
 MainWindow* mainwindow = nullptr;
+QHash<quint16, QLineEdit*> addrEditHash;
+QHash<quint16, quint8> addrFormatHash;
+QHash<quint16, quint8> addrSignHash;

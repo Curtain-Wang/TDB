@@ -17,13 +17,12 @@ public:
     ~TFormConfig2();
     void init();
     void sendGetData1Cmd();
-    void annalyzeData(QByteArray data);
+    void annalyzeData(quint8* data, quint16 length);
     void sendGetData2Cmd();
+    void annalyzeOneData(quint16 addr, quint16 value);
 private:
     Ui::TFormConfig2 *ui;
     MainWindow* mainwindow;
-    QHash<quint16, MyLineEdit*> addrEditHash;
-    QHash<quint16, quint8> addrFormatHash;
 };
 
 #endif // TFORMCONFIG2_H

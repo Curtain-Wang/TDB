@@ -58,9 +58,7 @@ private:
     QSerialPort* serialPort;
     QTimer* sendTimer = nullptr;
     QTimer* receiveTimer = nullptr;
-    QHash<quint16, QLineEdit*> addrEditHash;
-    QHash<quint16, quint8> addrFormatHash;
-    QHash<quint16, quint8> addrSignHash;
+
     QLabel* connectStatusLabel;
     QLabel* runningStatusLabel;
     TForm7* tform7 = nullptr;

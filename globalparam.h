@@ -1,8 +1,10 @@
 #ifndef GLOBALPARAM_H
 #define GLOBALPARAM_H
+#include <QHash>
 class QByteArray;
 class QString;
 class MainWindow;
+class QLineEdit;
 extern int waitMessageRemaingTime;
 extern int dataRefreshRemaingTime;
 //0未连接 1已连接
@@ -27,4 +29,7 @@ extern const int BR;
 extern QString connStatus;
 extern QString runningStatus;
 extern MainWindow* mainwindow;
+extern QHash<quint16, QLineEdit*> addrEditHash;
+extern QHash<quint16, quint8> addrFormatHash;
+extern QHash<quint16, quint8> addrSignHash;
 #endif // GLOBALPARAM_H

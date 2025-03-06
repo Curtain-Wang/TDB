@@ -208,6 +208,8 @@ void MainWindow::onReceiveTimerTimeout()
                 tform1->displayInfo("串口上传上来且验证通过的一条消息：" + buf.toHex());
             }
             receiveStartIndex = (receiveStartIndex + messageSize) % 500;
+            //清空等待时间
+            waitMessageRemaingTime = 0;
             dealMessage(buf);
             break;
         }
@@ -226,46 +228,58 @@ void MainWindow::dealMessage(const QByteArray &data)
     //查询命令
     if(data[1] == READ_CMD)
     {
-        //清空等待时间
-        waitMessageRemaingTime = 0;
         //数据
         QByteArray dataBuf = data.mid(3, data.size() - 5);
+        quint8* dataPtr = reinterpret_cast<quint8*>(dataBuf.data());
         //主页的数据
         if(lastStartAddr == mainAddrStart)
         {
-            quint8* dataPtr = reinterpret_cast<quint8*>(dataBuf.data());
             refershData(dataPtr, dataBuf.length());  // 传递左值
         }else if(lastStartAddr == config1AddrStart)//配置界面1
         {
             if(tformConfig1 != nullptr)
             {
-                tformConfig1->annalyzeData(dataBuf);
+                tformConfig1->annalyzeData(dataPtr, dataBuf.length());
             }
         }else if(lastStartAddr == config2AddrStart1)//配置界面2第一段
         {
             if(tformConfig2 != nullptr)
             {
-                tformConfig2->annalyzeData(dataBuf);
+                tformConfig2->annalyzeData(dataPtr, dataBuf.length());
             }
+            //第一段数据收到之后，发第二段命令
             tformConfig2->sendGetData2Cmd();
         }else if(lastStartAddr == config2AddrStart2)//配置界面2第二段
         {
             if(tformConfig2 != nullptr)
             {
-                tformConfig2->annalyzeData(dataBuf);
+                tformConfig2->annalyzeData(dataPtr, dataBuf.length());
             }
         }
     }
     else if(data[1] == WRITE_ONE_CMD)
     {
-        //TODO 写入命令返回，立刻回显
-
+        //写入命令返回，立刻回显
+        quint16 addr = ((data[2] << 8) | data[3]);
+        quint16 value = ((data[4] << 8) | data[5]);
+        if(addr < config2AddrStart1)
+        {
+            if(tformConfig1 != nullptr)
+            {
+                tformConfig1->annalyzeOneData(addr, value);
+            }
+        }else
+        {
+            if(tformConfig2 != nullptr)
+            {
+                tformConfig2->annalyzeOneData(addr, value);
+            }
+        }
 
     }
     else if(data[1] == WRITE_MULTIPLE_CMD)
     {
         //多个写入命令返回，暂时没有处理逻辑、
-        waitMessageRemaingTime = 0;
     }
 }
 

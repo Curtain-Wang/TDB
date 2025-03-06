@@ -28,6 +28,13 @@ void TForm7::on_lineEdit_returnPressed()
         return;
     }
 
+    float fValue = ui->lineEdit->text().toFloat();
+    quint16 iValue= (quint16)(fValue * qPow(10, addrFormatHash[lastStartAddr]));
+    quint8 startHigh = ((lastStartAddr >> 8) & 0xFF);
+    quint8 startLow = (lastStartAddr & 0xFF);
+    quint8 valueHigh = ((iValue >> 8) & 0xFF);
+    quint8 valueLow = (iValue & 0xFF);
+    mainwindow->manualWriteOneCMDBuild(startHigh, startLow, valueHigh, valueLow);
     this->close();
 }
 

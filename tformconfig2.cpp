@@ -35,6 +35,7 @@ void TFormConfig2::init()
     addrEditHash[1337] = ui->l1337;
     addrEditHash[1531] = ui->l1531;
     addrEditHash[1532] = ui->l1532;
+    //寄存器地址和小数位映射
     addrFormatHash[1318] = 2;
     addrFormatHash[1321] = 2;
     addrFormatHash[1322] = 0;
@@ -48,6 +49,20 @@ void TFormConfig2::init()
     addrFormatHash[1337] = 2;
     addrFormatHash[1531] = 0;
     addrFormatHash[1532] = 0;
+    //寄存器地址和符号映射
+    addrSignHash[1318] = 0;
+    addrSignHash[1321] = 1;
+    addrSignHash[1322] = 0;
+    addrSignHash[1323] = 0;
+    addrSignHash[1326] = 1;
+    addrSignHash[1327] = 0;
+    addrSignHash[1328] = 1;
+    addrSignHash[1329] = 0;
+    addrSignHash[1330] = 0;
+    addrSignHash[1336] = 1;
+    addrSignHash[1337] = 1;
+    addrSignHash[1531] = 0;
+    addrSignHash[1532] = 0;
     sendGetData1Cmd();
 }
 
@@ -56,24 +71,37 @@ void TFormConfig2::sendGetData1Cmd()
     mainwindow->manualReadCMDBuild(0x05, 0x26, 0x00, 0x14);
 }
 
-void TFormConfig2::annalyzeData(QByteArray data)
+void TFormConfig2::annalyzeData(quint8* data, quint16 length)
 {
-    for (int i = 0; i < data.length(); i += 2)
+    for (int i = 0; i < length; i += 2)
     {
         quint16 addr = lastStartAddr + i / 2;
-        if(addrEditHash.value(addr, nullptr) == nullptr)
-        {
-            continue;
-        }
-        quint16 high = static_cast<quint16>(data[i]);
+        quint16 high = data[i];
         quint16 low = data[i + 1];
         quint16 value = ((high << 8) | low);
-        addrEditHash[addr]->setText(QString::number(static_cast<float>(value * 1.0/ qPow(10, addrFormatHash[addr]), 'f', addrFormatHash[addr])));
+        annalyzeOneData(addr, value);
     }
 }
 
 void TFormConfig2::sendGetData2Cmd()
 {
     mainwindow->manualReadCMDBuild(0x05, 0xFB, 0x00, 0x02);
+}
+
+void TFormConfig2::annalyzeOneData(quint16 addr, quint16 value)
+{
+    if(addrEditHash.value(addr, nullptr) == nullptr)
+    {
+        return;
+    }
+    if(addrSignHash[addr])
+    {
+        //有符号
+        qint16 sValue = value;
+        addrEditHash[addr]->setText(QString::number(static_cast<float>(sValue * 1.0/ qPow(10, addrFormatHash[addr])), 'f', addrFormatHash[addr]));
+    }else
+    {
+        addrEditHash[addr]->setText(QString::number(static_cast<float>(value * 1.0/ qPow(10, addrFormatHash[addr])), 'f', addrFormatHash[addr]));
+    }
 }
 
