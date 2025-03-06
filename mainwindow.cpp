@@ -323,7 +323,11 @@ void MainWindow::refershData(quint8* data, quint16 length)
     reg1025Value = ((data[2] << 8) | data[3]);
     reg1027Value = ((data[6] << 8) | data[7]);
     reg1028Value = ((data[8] << 8) | data[9]);
-    tform3->refreshRealTimeData();
+    if(tform3 != nullptr)
+    {
+       tform3->refreshRealTimeData();
+    }
+
 }
 
 QString MainWindow::getWarnText(quint16 value)
