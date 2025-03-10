@@ -211,7 +211,7 @@ void MainWindow::onReceiveTimerTimeout()
             receiveStartIndex = (receiveStartIndex + messageSize) % 500;
             //清空等待时间
             waitMessageRemaingTime = 0;
-            dealMessage(buf);
+            dealMessage(reinterpret_cast<quint8*>(buf.data()));
             break;
         }
         //crc校验失败
@@ -224,29 +224,26 @@ void MainWindow::onReceiveTimerTimeout()
     }
 }
 
-void MainWindow::dealMessage(const QByteArray &data)
+void MainWindow::dealMessage(quint8* data)
 {
     //查询命令
     if(data[1] == READ_CMD)
     {
-        //数据
-        QByteArray dataBuf = data.mid(3, data.size() - 5);
-        quint8* dataPtr = reinterpret_cast<quint8*>(dataBuf.data());
         //主页的数据
         if(lastStartAddr == mainAddrStart)
         {
-            refershData(dataPtr, dataBuf.length());  // 传递左值
+            refershData(&data[3], data[2]);  // 传递左值
         }else if(lastStartAddr == config1AddrStart)//配置界面1
         {
             if(tformConfig1 != nullptr)
             {
-                tformConfig1->annalyzeData(dataPtr, dataBuf.length());
+                tformConfig1->annalyzeData(&data[3], data[2]);
             }
         }else if(lastStartAddr == config2AddrStart1)//配置界面2第一段
         {
             if(tformConfig2 != nullptr)
             {
-                tformConfig2->annalyzeData(dataPtr, dataBuf.length());
+                tformConfig2->annalyzeData(&data[3], data[2]);
             }
             //第一段数据收到之后，发第二段命令
             tformConfig2->sendGetData2Cmd();
@@ -254,13 +251,13 @@ void MainWindow::dealMessage(const QByteArray &data)
         {
             if(tformConfig2 != nullptr)
             {
-                tformConfig2->annalyzeData(dataPtr, dataBuf.length());
+                tformConfig2->annalyzeData(&data[3], data[2]);
             }
         }else if(lastStartAddr == 48)//校准界面
         {
             if(tform3 != nullptr)
             {
-                tform3->annalyzeData(dataPtr, dataBuf.length());
+                tform3->annalyzeData(&data[3], data[2]);
             }
         }
     }
@@ -269,17 +266,23 @@ void MainWindow::dealMessage(const QByteArray &data)
         //写入命令返回，立刻回显
         quint16 addr = ((data[2] << 8) | data[3]);
         quint16 value = ((data[4] << 8) | data[5]);
-        if(addr < config2AddrStart1)
+        if(addr < config2AddrStart1 && addr >= config1AddrStart)
         {
             if(tformConfig1 != nullptr)
             {
                 tformConfig1->annalyzeOneData(addr, value);
             }
-        }else
+        }else if(addr >= config2AddrStart1)
         {
             if(tformConfig2 != nullptr)
             {
                 tformConfig2->annalyzeOneData(addr, value);
+            }
+        }else if(addr < config1AddrStart)
+        {
+            if(tform3 != nullptr)
+            {
+                tform3->annalyzeOneData(addr, value);
             }
         }
 

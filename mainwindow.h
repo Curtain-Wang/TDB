@@ -32,7 +32,7 @@ public:
     void manualWriteOneCMDBuild(quint16 startHigh, quint16 startLow, char valueHigh, char valueLow, quint8 secFlag = 0);
     void cacheReceiveData();
     bool receiveDataCRCCheck(const QByteArray &data);
-    void dealMessage(const QByteArray &data);
+    void dealMessage(quint8* data);
     void refershData(quint8* data, quint16 length);
     QString getWarnText(quint16 value);
     QString getProtText(quint16 value);

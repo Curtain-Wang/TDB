@@ -22,6 +22,7 @@ extern int receiveStartIndex;
 extern int receiveEndIndex;
 extern int lastStartAddr;
 extern int mainAddrStart;
+extern int lastEditAddr;
 extern int config1AddrStart;
 extern int config2AddrStart1;
 extern int config2AddrStart2;

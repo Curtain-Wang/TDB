@@ -31,7 +31,7 @@ void MyLineEdit::mousePressEvent(QMouseEvent *event)
     // 你可以在这里添加更多点击处理逻辑
     qDebug() << objectName()<< "LineEdit clicked!";
 
-    lastStartAddr = objectName().mid(1).toInt();
+    lastEditAddr = objectName().mid(1).toInt();
 
     if(tform7 == nullptr)
     {
