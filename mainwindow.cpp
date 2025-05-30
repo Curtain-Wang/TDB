@@ -60,9 +60,6 @@ void MainWindow::init()
     addrEditHash[1030] = ui->lineEdit_6;
     addrEditHash[1031] = ui->lineEdit_7;
     addrEditHash[1032] = ui->lineEdit_8;
-    addrEditHash[1033] = ui->lineEdit_10;
-    addrEditHash[1034] = ui->lineEdit_11;
-    addrEditHash[1036] = ui->lineEdit_9;
 
     addrFormatHash[1024] = 2;
     addrFormatHash[1025] = 2;
@@ -73,9 +70,6 @@ void MainWindow::init()
     addrFormatHash[1030] = 1;
     addrFormatHash[1031] = 1;
     addrFormatHash[1032] = 1;
-    addrFormatHash[1033] = 0;
-    addrFormatHash[1034] = 0;
-    addrFormatHash[1036] = 0;
 
     addrSignHash[1024] = 0;
     addrSignHash[1025] = 1;
@@ -86,9 +80,6 @@ void MainWindow::init()
     addrSignHash[1030] = 1;
     addrSignHash[1031] = 1;
     addrSignHash[1032] = 1;
-    addrSignHash[1033] = 0;
-    addrSignHash[1034] = 0;
-    addrSignHash[1036] = 0;
 
 }
 void MainWindow::onSendTimerTimeout()
