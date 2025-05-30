@@ -40,7 +40,7 @@
             </font>
            </property>
            <property name="text">
-            <string>TDB工作模式控制</string>
+            <string>DCDC工作模式控制</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

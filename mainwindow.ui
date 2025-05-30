@@ -424,7 +424,7 @@ QPushButton:pressed {
        </font>
       </property>
       <property name="text">
-       <string/>
+       <string>工作模式: 未知</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -777,7 +777,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>TDB 最高温度</string>
+             <string>DCDC 最高温度</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1017,29 +1017,65 @@ QPushButton:pressed {
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_37">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>31</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>31</height>
-       </size>
+     <widget class="QLabel" name="bms_warn_prot">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="font">
        <font>
-        <pointsize>13</pointsize>
+        <family>Microsoft YaHei UI</family>
+        <pointsize>15</pointsize>
+        <italic>true</italic>
+        <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">/* 告警区域 - 无告警时 */
+QLabel[status=&quot;normal&quot;] {
+    background-color: #E8F5E9;           /* 柔和的淡绿 */
+    border: 1px solid #A5D6A7;           /* 清新的绿边 */
+    color: #256029;                      /* 深墨绿色字体，更显安心 */
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-weight: normal;                 /* 无需强调，去掉 bold */
+    margin: 10px 12px;
+}
+/* 告警区域 - 告警时 */
+QLabel[status=&quot;warn&quot;] {
+    background-color: #FFE5E5;
+    border: 1px solid #FF4D4F;
+    color: #D8000C;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-weight: bold;
+    margin: 10px 12px;
+}
+/* 告警区域 - 未连接（无数据） */
+QLabel[status=&quot;disconnected&quot;] {
+    background-color: #F2F2F7;           /* Apple 系统背景灰 */
+    border: 1px solid #D1D1D6;           /* Apple 系统分隔线灰 */
+    color: #8E8E93;                      /* Apple 系统文本辅助灰 */
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-weight: normal;
+    font-style: italic;                  /* 可选，让状态感更明确 */
+    margin: 10px 12px;
+}</string>
+      </property>
       <property name="text">
-       <string/>
+       <string>未连接</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="status" stdset="0">
+       <string>disconnected</string>
       </property>
      </widget>
     </item>

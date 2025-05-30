@@ -1,6 +1,7 @@
 #ifndef GLOBALPARAM_H
 #define GLOBALPARAM_H
 #include <QHash>
+#define NO_WARN_PROT_STR    "无告警、保护"
 class QByteArray;
 class QString;
 class MainWindow;

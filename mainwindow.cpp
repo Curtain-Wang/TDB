@@ -319,7 +319,21 @@ void MainWindow::refershData(quint8* data, quint16 length)
     }
     quint16 warnValue = ((data[length - 6] << 8) | data[length - 5]);
     quint16 protValue = ((data[length - 4] << 8) | data[length - 3]);
-    ui->label_37->setText(getWarnText(warnValue).append(getProtText(protValue)));
+    QString warnPortStr = getWarnText(warnValue).append(getProtText(protValue));
+    if(warnPortStr.length() == 0)
+    {
+        ui->bms_warn_prot->setText(NO_WARN_PROT_STR);
+        ui->bms_warn_prot->setProperty("status", "normal");
+    }else
+    {
+        ui->bms_warn_prot->setText(warnPortStr);
+        ui->bms_warn_prot->setProperty("status", "warn");
+    }
+    ui->bms_warn_prot->style()->unpolish(ui->bms_warn_prot);
+    ui->bms_warn_prot->style()->polish(ui->bms_warn_prot);
+    ui->bms_warn_prot->update();
+
+
     quint16 workValue = ((data[length - 2] << 8) | data[length - 1]);
     ui->label_39->setText(getWorkText(workValue));
     reg1024Value = ((data[0] << 8) | data[1]);
@@ -376,10 +390,6 @@ QString MainWindow::getWarnText(quint16 value)
     {
         text.append(" 电源反接告警");
     }
-    // if(((value >> 13) & 1) == 1)
-    // {
-    //     text.append("短路保护");
-    // }
     return text;
 }
 
@@ -443,7 +453,7 @@ QString MainWindow::getProtText(quint16 value)
 
 QString MainWindow::getWorkText(quint16 value)
 {
-    QString text;
+    QString text = "工作模式:";
     if((value & 1) == 1)
     {
         text.append(" BUCK限流充电");
@@ -658,6 +668,12 @@ void MainWindow::on_connBtn_clicked()
         connectStatusLabel->setText(connStatus.arg("未连接"));
         connectStatusLabel->setStyleSheet("QLabel { background-color : red; color : white; }");
         ui->connBtn->setText("建立连接");
+
+        ui->bms_warn_prot->setText("未连接");
+        ui->bms_warn_prot->setProperty("status", "disconnected");
+        ui->bms_warn_prot->style()->unpolish(ui->bms_warn_prot);
+        ui->bms_warn_prot->style()->polish(ui->bms_warn_prot);
+        ui->bms_warn_prot->update();
     }
 }
 

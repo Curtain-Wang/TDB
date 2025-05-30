@@ -744,7 +744,7 @@
             </font>
            </property>
            <property name="text">
-            <string>配置TDB 参数保存</string>
+            <string>配置DCDC参数保存</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -808,7 +808,7 @@
             </font>
            </property>
            <property name="text">
-            <string>配置TDB 参数修改允许</string>
+            <string>配置DCDC参数修改允许</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
