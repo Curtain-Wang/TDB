@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/battery_monitoring_system_icon.ico</file>
+    </qresource>
+</RCC>

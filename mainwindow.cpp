@@ -80,7 +80,7 @@ void MainWindow::init()
     addrSignHash[1030] = 1;
     addrSignHash[1031] = 1;
     addrSignHash[1032] = 1;
-
+    setWindowTitle(TITLE);
 }
 void MainWindow::onSendTimerTimeout()
 {
@@ -635,7 +635,7 @@ void MainWindow::on_connBtn_clicked()
         serialPort->setPortName(ui->comboBox_2->currentText());
         serialPort->setDataBits(QSerialPort::Data8);
         serialPort->setStopBits(QSerialPort::OneStop);
-        serialPort->setParity(QSerialPort::EvenParity);
+        serialPort->setParity(QSerialPort::NoParity);
         //连接失败
         if(!serialPort->open(QIODevice::ReadWrite))
         {
