@@ -63,7 +63,7 @@ void MainWindow::init()
 
     addrFormatHash[1024] = 2;
     addrFormatHash[1025] = 2;
-    addrFormatHash[1026] = 2;
+    addrFormatHash[1026] = 0;
     addrFormatHash[1027] = 2;
     addrFormatHash[1028] = 2;
     addrFormatHash[1029] = 1;
@@ -298,6 +298,10 @@ void MainWindow::refershData(quint8* data, quint16 length)
     for (int i = 0; i < length - 6; i += 2)
     {
         quint16 addr = lastStartAddr + i / 2;
+        if(addr == 1026)
+        {
+            continue;
+        }
         if(addrEditHash.value(addr, nullptr) == nullptr)
         {
             continue;
@@ -344,7 +348,21 @@ void MainWindow::refershData(quint8* data, quint16 length)
     {
        tform3->refreshRealTimeData();
     }
-
+    //电池端总功率计算
+    float val1 = ui->lineEdit_3->text().toFloat();
+    float val2 = ui->lineEdit_4->text().toFloat();
+    float result = val1 * val2;
+    ui->lineEdit_9->setText(QString::number(result, 'f', 0));
+    //充电总功率计算
+    val1 = ui->lineEdit_0->text().toFloat();
+    val2 = ui->lineEdit_1->text().toFloat();
+    result = val1 * val2;
+    ui->lineEdit_2->setText(QString::number(result, 'f', 0));
+    //转换效率计算
+    val1 = ui->lineEdit_2->text().toFloat();
+    val2 = ui->lineEdit_9->text().toFloat();
+    result = val1 < val2 ? val1 * 100 / val2 : val2 * 100 / val1;
+    ui->lineEdit_10->setText(QString::number(result, 'f', 2));
 }
 
 QString MainWindow::getWarnText(quint16 value)

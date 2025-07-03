@@ -45,7 +45,7 @@ void TFormConfig2::init()
     addrFormatHash[1328] = 2;
     addrFormatHash[1329] = 0;
     addrFormatHash[1330] = 0;
-    addrFormatHash[1336] = 2;
+    addrFormatHash[1336] = 1;
     addrFormatHash[1337] = 2;
     addrFormatHash[1531] = 0;
     addrFormatHash[1532] = 0;

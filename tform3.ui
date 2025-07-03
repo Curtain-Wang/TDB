@@ -51,7 +51,7 @@ QLineEdit[readOnly=&quot;true&quot;] {
            </font>
           </property>
           <property name="text">
-           <string>B侧</string>
+           <string>P侧</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -292,7 +292,7 @@ QLineEdit[readOnly=&quot;true&quot;] {
            </font>
           </property>
           <property name="text">
-           <string>A压侧</string>
+           <string>B侧</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
