@@ -446,7 +446,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
+         <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_27">
             <property name="minimumSize">
@@ -461,7 +461,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>充放电端总功率</string>
+             <string>充放电端总功率（P侧）</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -510,7 +510,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <layout class="QHBoxLayout" name="horizontalLayout_17" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_33">
             <property name="minimumSize">
@@ -525,7 +525,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>充放电端总电压</string>
+             <string>充放电端总电压（P侧）</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -574,7 +574,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_35">
             <property name="minimumSize">
@@ -638,7 +638,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_21">
             <property name="minimumSize">
@@ -653,7 +653,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>充放电端总电流</string>
+             <string>充放电端总电流（P侧）</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -702,7 +702,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_25">
             <property name="minimumSize">
@@ -766,7 +766,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_23">
             <property name="minimumSize">
@@ -781,7 +781,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>电池总电压</string>
+             <string>电池总电压（B侧）</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -830,7 +830,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
+         <layout class="QHBoxLayout" name="horizontalLayout_15" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_29">
             <property name="minimumSize">
@@ -845,7 +845,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>电池总电流</string>
+             <string>电池总电流（B侧）</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -894,7 +894,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_20">
+         <layout class="QHBoxLayout" name="horizontalLayout_20" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_37">
             <property name="minimumSize">
@@ -909,7 +909,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>电池端总功率</string>
+             <string>电池端总功率（B侧）</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -958,7 +958,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_19">
             <property name="minimumSize">
@@ -1022,7 +1022,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_16">
+         <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_31">
             <property name="minimumSize">
@@ -1086,7 +1086,7 @@ QPushButton:pressed {
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_21">
+         <layout class="QHBoxLayout" name="horizontalLayout_21" stretch="7,5,1">
           <item>
            <widget class="QLabel" name="label_41">
             <property name="minimumSize">

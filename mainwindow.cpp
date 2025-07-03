@@ -321,8 +321,8 @@ void MainWindow::refershData(quint8* data, quint16 length)
 
         }
     }
-    quint16 warnValue = ((data[length - 6] << 8) | data[length - 5]);
-    quint16 protValue = ((data[length - 4] << 8) | data[length - 3]);
+    quint16 warnValue = ((data[length - 8] << 8) | data[length - 7]);
+    quint16 protValue = ((data[length - 6] << 8) | data[length - 5]);
     QString warnPortStr = getWarnText(warnValue).append(getProtText(protValue));
     if(warnPortStr.length() == 0)
     {
@@ -472,6 +472,11 @@ QString MainWindow::getProtText(quint16 value)
 QString MainWindow::getWorkText(quint16 value)
 {
     QString text = "工作模式:";
+    if(value == 0)
+    {
+        text.append(" 初始化");
+        return text;
+    }
     if((value & 1) == 1)
     {
         text.append(" BUCK限流充电");
