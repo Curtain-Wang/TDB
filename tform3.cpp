@@ -31,13 +31,13 @@ void TForm3::init()
     addrEditHash[60] = ui->d60;
     addrEditHash[61] = ui->d61;
     //寄存器地址和小数位映射
-    addrFormatHash[48] = 3;
+    addrFormatHash[48] = 0;
     addrFormatHash[49] = 3;
-    addrFormatHash[52] = 3;
+    addrFormatHash[52] = 0;
     addrFormatHash[53] = 3;
-    addrFormatHash[56] = 3;
+    addrFormatHash[56] = 0;
     addrFormatHash[57] = 3;
-    addrFormatHash[60] = 3;
+    addrFormatHash[60] = 0;
     addrFormatHash[61] = 3;
     //寄存器地址和符号映射
     addrSignHash[53] = 0;

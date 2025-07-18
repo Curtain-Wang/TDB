@@ -16,6 +16,7 @@ SOURCES += \
     tform1.cpp \
     tform3.cpp \
     tform7.cpp \
+    tformcali.cpp \
     tformconfig1.cpp \
     tformconfig2.cpp
 
@@ -26,6 +27,7 @@ HEADERS += \
     tform1.h \
     tform3.h \
     tform7.h \
+    tformcali.h \
     tformconfig1.h \
     tformconfig2.h
 
@@ -34,6 +36,7 @@ FORMS += \
     tform1.ui \
     tform3.ui \
     tform7.ui \
+    tformcali.ui \
     tformconfig1.ui \
     tformconfig2.ui
 

@@ -10,6 +10,7 @@ class TFormConfig2;
 class QLabel;
 class TForm7;
 class TForm3;
+class TFormCali;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -59,6 +60,7 @@ private:
     TFormConfig1* tformConfig1 = nullptr;
     TFormConfig2* tformConfig2 = nullptr;
     TForm3* tform3 = nullptr;
+    TFormCali* tformCali = nullptr;
     QSerialPort* serialPort;
     QTimer* sendTimer = nullptr;
     QTimer* receiveTimer = nullptr;

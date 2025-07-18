@@ -11,6 +11,7 @@
 #include "tformconfig2.h"
 #include "tform7.h"
 #include "tform3.h"
+#include "tformcali.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , serialPort(new QSerialPort(this))
@@ -255,9 +256,9 @@ void MainWindow::dealMessage(quint8* data)
             }
         }else if(lastStartAddr == 48)//校准界面
         {
-            if(tform3 != nullptr)
+            if(tformCali != nullptr)
             {
-                tform3->annalyzeData(&data[3], data[2]);
+                tformCali->annalyzeData(&data[3], data[2]);
             }
         }
     }
@@ -280,10 +281,11 @@ void MainWindow::dealMessage(quint8* data)
             }
         }else if(addr < config1AddrStart)
         {
-            if(tform3 != nullptr)
+            if(tformCali != nullptr)
             {
-                tform3->annalyzeOneData(addr, value);
+                tformCali->sendGetDataCmd();
             }
+            QMessageBox::information(this, tr("提示"), tr("写入成功!"));
         }
 
     }
@@ -733,6 +735,10 @@ void MainWindow::onTFormDestroyed(QObject *obj)
     {
         tform3 = nullptr;
     }
+    if(obj == tformCali)
+    {
+        tformCali = nullptr;
+    }
 }
 
 
@@ -762,12 +768,12 @@ void MainWindow::on_pushButton_6_clicked()
 
 void MainWindow::on_pushButton_8_clicked()
 {
-    if(tform3 == nullptr)
+    if(tformCali == nullptr)
     {
-        tform3 = new TForm3(this);
-        tform3->setAttribute(Qt::WA_DeleteOnClose);
-        connect(tform3, &TForm3::destroyed, this, &MainWindow::onTFormDestroyed);
+        tformCali = new TFormCali(this);
+        tformCali->setAttribute(Qt::WA_DeleteOnClose);
+        connect(tformCali, &TFormCali::destroyed, this, &MainWindow::onTFormDestroyed);
     }
-    tform3->show();
+    tformCali->show();
 }
 
