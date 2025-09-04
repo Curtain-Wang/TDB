@@ -12,6 +12,7 @@
 #include "tform7.h"
 #include "tform3.h"
 #include "tformcali.h"
+#include <cmath>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , serialPort(new QSerialPort(this))
@@ -363,7 +364,7 @@ void MainWindow::refershData(quint8* data, quint16 length)
     //转换效率计算
     val1 = ui->lineEdit_2->text().toFloat();
     val2 = ui->lineEdit_9->text().toFloat();
-    result = val1 < val2 ? val1 * 100 / val2 : val2 * 100 / val1;
+    result = std::abs(val1) < std::abs(val2) ? val1 * 100 / val2 : val2 * 100 / val1;
     ui->lineEdit_10->setText(QString::number(result, 'f', 2));
 }
 
