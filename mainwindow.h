@@ -42,6 +42,7 @@ public:
 private slots:
     void onSendTimerTimeout();
     void onReceiveTimerTimeout();
+    void onCurAdjTimerTimeout();
     void on_connBtn_2_clicked();
     void onTFormDestroyed(QObject *obj);
     void on_connBtn_clicked();
@@ -64,7 +65,7 @@ private:
     QSerialPort* serialPort;
     QTimer* sendTimer = nullptr;
     QTimer* receiveTimer = nullptr;
-
+    QTimer* curAdjTimer = nullptr;
     QLabel* connectStatusLabel;
     QLabel* runningStatusLabel;
     TForm7* tform7 = nullptr;

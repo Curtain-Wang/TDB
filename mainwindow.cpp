@@ -13,6 +13,8 @@
 #include "tform3.h"
 #include "tformcali.h"
 #include <cmath>
+#include "QSettings"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , serialPort(new QSerialPort(this))
@@ -43,6 +45,12 @@ void MainWindow::init()
     connect(receiveTimer, &QTimer::timeout, this, &MainWindow::onReceiveTimerTimeout);
     receiveTimer->setInterval(10);
     receiveTimer->start();
+    //电流调整定时器
+    curAdjTimer = new QTimer(this);
+    connect(curAdjTimer, &QTimer::timeout, this, &MainWindow::onCurAdjTimerTimeout);
+    curAdjTimer->setInterval(1000);
+    curAdjTimer->start();
+
     //状态栏
     connectStatusLabel->setMinimumWidth(150);
     ui->statusbar->addWidget(connectStatusLabel);
@@ -83,6 +91,26 @@ void MainWindow::init()
     addrSignHash[1031] = 1;
     addrSignHash[1032] = 1;
     setWindowTitle(TITLE);
+
+    QSettings settings(CONFIG_FILE, QSettings::IniFormat);
+    settings.beginGroup(CONFIG_BASE_INFO);
+    if(settings.contains(DISCHARGE_CURRENT_LIMIT))
+    {
+        dischargeLimitI = settings.value(DISCHARGE_CURRENT_LIMIT).toInt();
+    }else
+    {
+        settings.setValue(DISCHARGE_CURRENT_LIMIT, 100);
+        dischargeLimitI = 100;
+    }
+    if(settings.contains(DISCHARGE_CURRENT_ADJUST_V))
+    {
+        dischargeIAdjV = settings.value(DISCHARGE_CURRENT_ADJUST_V).toInt();
+    }else
+    {
+        settings.setValue(DISCHARGE_CURRENT_ADJUST_V, 5);
+        dischargeIAdjV = 5;
+    }
+    settings.endGroup();
 }
 void MainWindow::onSendTimerTimeout()
 {
@@ -98,7 +126,10 @@ void MainWindow::onSendTimerTimeout()
     {
         dataRefreshRemaingTime--;
     }
-
+    if(curLimitInterval > 0)
+    {
+        curLimitInterval--;
+    }
     //说明串口空闲，看看有没有手动的命令要下发
     if(waitMessageRemaingTime == 0)
     {
@@ -109,6 +140,16 @@ void MainWindow::onSendTimerTimeout()
             manualFlag = 0;
         }
         //说明没有手动命令要下发，就判断是否到了刷新时间
+        else if(curLimitInterval == 0 && (reg1036Value & 0x1C) > 0 && reg1025Value < 0 && -reg1025Value < dischargeLimitI * 100)
+        {
+            quint16 limitCur = reg1025Value / -100 * 100 + dischargeIAdjV * 100;
+            if(limitCur > dischargeLimitI * 100)
+            {
+                limitCur = dischargeLimitI * 100;
+            }
+            manualWriteOneCMDBuild(1294 >> 8, 1294 & 0xFF, limitCur >> 8, limitCur & 0xFF);
+            curLimitInterval = 10;
+        }
         else if(dataRefreshRemaingTime <= 0)
         {
             //获取实时数据
@@ -223,6 +264,14 @@ void MainWindow::onReceiveTimerTimeout()
             receiveStartIndex = (receiveStartIndex + 1) % 500;
             continue;
         }
+    }
+}
+
+void MainWindow::onCurAdjTimerTimeout()
+{
+    if(connFlag != 1)
+    {
+        return;
     }
 }
 
@@ -347,6 +396,7 @@ void MainWindow::refershData(quint8* data, quint16 length)
     reg1025Value = ((data[2] << 8) | data[3]);
     reg1027Value = ((data[6] << 8) | data[7]);
     reg1028Value = ((data[8] << 8) | data[9]);
+    reg1036Value = ((data[length - 2] << 8) | data[length - 1]);
     if(tform3 != nullptr)
     {
        tform3->refreshRealTimeData();
@@ -594,7 +644,7 @@ void MainWindow::manualReadCMDBuild(quint16 startHigh, quint16 startLow, char nu
 {
     if(manualFlag == 1)
     {
-        QMessageBox::information(this, "冲突", "当前有其他手动命令在发送, 请稍后再试!");
+        // QMessageBox::information(this, "冲突", "当前有其他手动命令在发送, 请稍后再试!");
         return;
     }
     manualSendDataBuf.clear();
@@ -680,6 +730,7 @@ void MainWindow::on_connBtn_clicked()
             connectStatusLabel->setText(connStatus.arg("已连接"));
             connectStatusLabel->setStyleSheet("QLabel { background-color : green; color : white; }");
             ui->connBtn->setText("断开连接");
+            manualWriteOneCMDBuild(1294 >> 8, 1294 & 0xFF, 500 >> 8, (500 & 0xFF));
         }
     }
     else if(ui->connBtn->text() == "断开连接")
@@ -700,6 +751,8 @@ void MainWindow::on_connBtn_clicked()
         ui->bms_warn_prot->style()->unpolish(ui->bms_warn_prot);
         ui->bms_warn_prot->style()->polish(ui->bms_warn_prot);
         ui->bms_warn_prot->update();
+
+        curLimitInitFlag = 0;
     }
 }
 

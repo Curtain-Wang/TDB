@@ -64,6 +64,8 @@ void TFormConfig2::init()
     addrSignHash[1531] = 0;
     addrSignHash[1532] = 0;
     sendGetData1Cmd();
+    ui->l20001->setText(QString::number(dischargeLimitI));
+    ui->l20002->setText(QString::number(dischargeIAdjV));
 }
 
 void TFormConfig2::sendGetData1Cmd()

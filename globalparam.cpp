@@ -3,7 +3,10 @@
 #include <QString>
 #include <mainwindow.h>
 #include <QLineEdit>
+int dischargeLimitI = 0;
+int dischargeIAdjV = 0;
 int waitMessageRemaingTime = 0;
+int curLimitInterval = 10;
 int dataRefreshRemaingTime = 0;
 //手动标记，0自动 1手动 2双手动
 int manualFlag = 0;
@@ -35,3 +38,5 @@ quint16 reg1024Value = 0;
 qint16 reg1025Value = 0;
 quint16 reg1027Value = 0;
 qint16 reg1028Value = 0;
+qint16 reg1036Value = -1;
+quint16 curLimitInitFlag = 0;

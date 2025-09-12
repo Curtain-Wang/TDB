@@ -22,12 +22,32 @@ TForm7::~TForm7()
 
 void TForm7::on_lineEdit_returnPressed()
 {
+
+    if(lastEditAddr == 20001)
+    {
+        QSettings settings(CONFIG_FILE, QSettings::IniFormat);
+        settings.beginGroup(CONFIG_BASE_INFO);
+        settings.setValue(DISCHARGE_CURRENT_LIMIT, ui->lineEdit->text().toInt());
+        dischargeLimitI = ui->lineEdit->text().toInt();
+        settings.endGroup();
+        this->close();
+        return;
+    }
+    if(lastEditAddr == 20002)
+    {
+        QSettings settings(CONFIG_FILE, QSettings::IniFormat);
+        settings.beginGroup(CONFIG_BASE_INFO);
+        settings.setValue(DISCHARGE_CURRENT_ADJUST_V, ui->lineEdit->text().toInt());
+        dischargeIAdjV = ui->lineEdit->text().toInt();
+        settings.endGroup();
+        this->close();
+        return;
+    }
     if(connFlag == 0)
     {
         QMessageBox::information(this, tr("提示"), tr("请先建立连接!"));
         return;
     }
-
     float fValue = ui->lineEdit->text().toFloat();
     quint16 iValue= (quint16)(fValue * qPow(10, addrFormatHash[lastEditAddr]) + 0.5);
     quint8 startHigh = ((lastEditAddr >> 8) & 0xFF);
@@ -35,6 +55,5 @@ void TForm7::on_lineEdit_returnPressed()
     quint8 valueHigh = ((iValue >> 8) & 0xFF);
     quint8 valueLow = (iValue & 0xFF);
     mainwindow->manualWriteOneCMDBuild(startHigh, startLow, valueHigh, valueLow);
-    this->close();
 }
 
