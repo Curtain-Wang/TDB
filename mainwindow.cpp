@@ -311,13 +311,9 @@ void MainWindow::dealMessage(quint8* data)
 
 void MainWindow::refershData(quint8* data, quint16 length)
 {
-    for (int i = 0; i < length - 6; i += 2)
+    for (int i = 0; i < length; i += 2)
     {
         quint16 addr = lastStartAddr + i / 2;
-        if(addr == 1026)
-        {
-            continue;
-        }
         if(addrEditHash.value(addr, nullptr) == nullptr)
         {
             continue;
@@ -337,8 +333,8 @@ void MainWindow::refershData(quint8* data, quint16 length)
 
         }
     }
-    quint16 warnValue = ((data[length - 8] << 8) | data[length - 7]);
-    quint16 protValue = ((data[length - 6] << 8) | data[length - 5]);
+    quint16 warnValue = ((data[length - 16] << 8) | data[length - 15]);
+    quint16 protValue = ((data[length - 14] << 8) | data[length - 13]);
     QString warnPortStr = getWarnText(warnValue).append(getProtText(protValue));
     if(warnPortStr.length() == 0)
     {
@@ -354,7 +350,7 @@ void MainWindow::refershData(quint8* data, quint16 length)
     ui->bms_warn_prot->update();
 
 
-    quint16 workValue = ((data[length - 2] << 8) | data[length - 1]);
+    quint16 workValue = ((data[length - 10] << 8) | data[length - 9]);
     ui->label_39->setText(getWorkText(workValue));
     reg1024Value = ((data[0] << 8) | data[1]);
     reg1025Value = ((data[2] << 8) | data[3]);
