@@ -62,6 +62,10 @@ void MainWindow::init()
     addrEditHash[1030] = ui->lineEdit_6;
     addrEditHash[1031] = ui->lineEdit_7;
     addrEditHash[1032] = ui->lineEdit_8;
+    addrEditHash[1037] = ui->lineEdit_11;
+    addrEditHash[1038] = ui->lineEdit_12;
+    addrEditHash[1039] = ui->lineEdit_13;
+    addrEditHash[1040] = ui->lineEdit_14;
 
     addrFormatHash[1024] = 2;
     addrFormatHash[1025] = 2;
@@ -72,6 +76,10 @@ void MainWindow::init()
     addrFormatHash[1030] = 1;
     addrFormatHash[1031] = 1;
     addrFormatHash[1032] = 1;
+    addrFormatHash[1037] = 1;
+    addrFormatHash[1038] = 1;
+    addrFormatHash[1039] = 1;
+    addrFormatHash[1040] = 1;
 
     addrSignHash[1024] = 0;
     addrSignHash[1025] = 1;
@@ -82,6 +90,11 @@ void MainWindow::init()
     addrSignHash[1030] = 1;
     addrSignHash[1031] = 1;
     addrSignHash[1032] = 1;
+    addrSignHash[1037] = 0;
+    addrSignHash[1038] = 0;
+    addrSignHash[1039] = 0;
+    addrSignHash[1040] = 0;
+
     setWindowTitle(TITLE);
 }
 void MainWindow::onSendTimerTimeout()
@@ -580,7 +593,7 @@ void MainWindow::sendGetRealTimeDataCMD()
     buf.append(static_cast<char>(0x00));
     //个数
     buf.append(static_cast<char>(0x00));
-    buf.append(static_cast<char>(0x0D));
+    buf.append(static_cast<char>(0x11));
     QByteArray crcArray = calculateCRCArray(buf, 6);
     //crC
     buf.append(crcArray[0]);

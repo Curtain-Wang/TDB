@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1121</width>
-    <height>591</height>
+    <width>1235</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <normaloff>:/images/images/battery_monitoring_system_icon.ico</normaloff>:/images/images/battery_monitoring_system_icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_33">
       <property name="minimumSize">
        <size>
@@ -408,7 +408,7 @@ QPushButton:pressed {
       </layout>
      </widget>
     </item>
-    <item>
+    <item row="1" column="0">
      <widget class="QLabel" name="label_39">
       <property name="minimumSize">
        <size>
@@ -435,76 +435,12 @@ QPushButton:pressed {
       </property>
      </widget>
     </item>
-    <item>
+    <item row="2" column="0">
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
        <string/>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBox_3">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="7,5,1">
-          <item>
-           <widget class="QLabel" name="label_27">
-            <property name="minimumSize">
-             <size>
-              <width>119</width>
-              <height>31</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>13</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>充放电端总功率（P侧）</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_2">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>31</height>
-             </size>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_28">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>31</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>13</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>W</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBox_9">
          <property name="title">
@@ -560,70 +496,6 @@ QPushButton:pressed {
             </property>
             <property name="text">
              <string>V</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QGroupBox" name="groupBox_10">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="7,5,1">
-          <item>
-           <widget class="QLabel" name="label_35">
-            <property name="minimumSize">
-             <size>
-              <width>119</width>
-              <height>31</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>13</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>放电MOS管温度</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_7">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>31</height>
-             </size>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_36">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>31</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>13</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>℃</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -697,14 +569,14 @@ QPushButton:pressed {
          </layout>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QGroupBox" name="groupBox_8">
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="7,5,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="7,5,1">
           <item>
-           <widget class="QLabel" name="label_25">
+           <widget class="QLabel" name="label_27">
             <property name="minimumSize">
              <size>
               <width>119</width>
@@ -717,7 +589,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>充电MOS管温度</string>
+             <string>充放电端总功率（P侧）</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -725,7 +597,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_6">
+           <widget class="QLineEdit" name="lineEdit_2">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -738,7 +610,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_26">
+           <widget class="QLabel" name="label_28">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -751,7 +623,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>℃</string>
+             <string>W</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -953,14 +825,14 @@ QPushButton:pressed {
          </layout>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QGroupBox" name="groupBox_7">
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBox_8">
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="7,5,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="7,5,1">
           <item>
-           <widget class="QLabel" name="label_19">
+           <widget class="QLabel" name="label_25">
             <property name="minimumSize">
              <size>
               <width>119</width>
@@ -973,7 +845,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>环境温度</string>
+             <string>电感1温度</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -981,7 +853,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_8">
+           <widget class="QLineEdit" name="lineEdit_6">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -994,7 +866,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_20">
+           <widget class="QLabel" name="label_26">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1017,14 +889,14 @@ QPushButton:pressed {
          </layout>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QGroupBox" name="groupBox_4">
+       <item row="2" column="1">
+        <widget class="QGroupBox" name="groupBox_10">
          <property name="title">
           <string/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="7,5,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="7,5,1">
           <item>
-           <widget class="QLabel" name="label_31">
+           <widget class="QLabel" name="label_35">
             <property name="minimumSize">
              <size>
               <width>119</width>
@@ -1037,7 +909,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string>DCDC 最高温度</string>
+             <string>电感2温度</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1045,7 +917,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_5">
+           <widget class="QLineEdit" name="lineEdit_7">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1058,7 +930,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_32">
+           <widget class="QLabel" name="label_36">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1145,10 +1017,394 @@ QPushButton:pressed {
          </layout>
         </widget>
        </item>
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_19">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>电感3温度</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_8">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_20">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>℃</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_31">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>散热支架B1</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_5">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_32">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>℃</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_43">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>散热支架P1</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_11">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_44">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>℃</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QGroupBox" name="groupBox_15">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_24" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_47">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>散热面板</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_13">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_48">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>℃</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QGroupBox" name="groupBox_16">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_25" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_49">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>散热支架B2</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_14">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_50">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>℃</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QGroupBox" name="groupBox_14">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_23" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_45">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>散热支架P2</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_12">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_46">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>℃</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
-    <item>
+    <item row="3" column="0">
      <widget class="QLabel" name="bms_warn_prot">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -1218,8 +1474,8 @@ QLabel[status=&quot;disconnected&quot;] {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1121</width>
-     <height>17</height>
+     <width>1235</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
