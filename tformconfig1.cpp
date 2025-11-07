@@ -24,6 +24,8 @@ void TFormConfig1::init()
     //寄存器地址和LineEdit映射
     addrEditHash[1280] = ui->l1280;
     addrEditHash[1281] = ui->l1281;
+    addrEditHash[1282] = ui->l1282;
+    addrEditHash[1283] = ui->l1283;
     addrEditHash[1284] = ui->l1284;
     addrEditHash[1290] = ui->l1290;
     addrEditHash[1291] = ui->l1291;
@@ -43,6 +45,8 @@ void TFormConfig1::init()
     //寄存器地址和小数位映射
     addrFormatHash[1280] = 0;
     addrFormatHash[1281] = 2;
+    addrFormatHash[1282] = 0;
+    addrFormatHash[1083] = 0;
     addrFormatHash[1284] = 0;
     addrFormatHash[1290] = 2;
     addrFormatHash[1291] = 2;
@@ -62,6 +66,8 @@ void TFormConfig1::init()
     //寄存器地址和符号映射
     addrSignHash[1280] = 0;
     addrSignHash[1281] = 1;
+    addrSignHash[1282] = 1;
+    addrSignHash[12] = 0;
     addrSignHash[1284] = 1;
     addrSignHash[1290] = 0;
     addrSignHash[1291] = 1;

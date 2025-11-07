@@ -28,8 +28,16 @@ void TForm7::on_lineEdit_returnPressed()
         return;
     }
 
-    float fValue = ui->lineEdit->text().toFloat();
-    quint16 iValue= (quint16)(fValue * qPow(10, addrFormatHash[lastEditAddr]) + 0.5);
+    float fValue = ui->lineEdit->text().toFloat() * qPow(10, addrFormatHash[lastEditAddr]);
+    quint16 iValue= 0;
+    if(fValue < 0)
+    {
+        iValue = (quint16)(fValue - 0.5);
+    }else
+    {
+        iValue = (quint16)(fValue + 0.5);
+    }
+
     quint8 startHigh = ((lastEditAddr >> 8) & 0xFF);
     quint8 startLow = (lastEditAddr & 0xFF);
     quint8 valueHigh = ((iValue >> 8) & 0xFF);
