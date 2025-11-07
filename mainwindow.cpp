@@ -66,6 +66,8 @@ void MainWindow::init()
     addrEditHash[1038] = ui->lineEdit_12;
     addrEditHash[1039] = ui->lineEdit_13;
     addrEditHash[1040] = ui->lineEdit_14;
+    addrEditHash[1041] = ui->lineEdit_15;
+    addrEditHash[1042] = ui->lineEdit_16;
 
     addrFormatHash[1024] = 2;
     addrFormatHash[1025] = 2;
@@ -80,6 +82,8 @@ void MainWindow::init()
     addrFormatHash[1038] = 1;
     addrFormatHash[1039] = 1;
     addrFormatHash[1040] = 1;
+    addrFormatHash[1041] = 3;
+    addrFormatHash[1042] = 0;
 
     addrSignHash[1024] = 0;
     addrSignHash[1025] = 1;
@@ -94,6 +98,8 @@ void MainWindow::init()
     addrSignHash[1038] = 0;
     addrSignHash[1039] = 0;
     addrSignHash[1040] = 0;
+    addrSignHash[1041] = 0;
+    addrSignHash[1042] = 0;
 
     setWindowTitle(TITLE);
 }
@@ -333,8 +339,8 @@ void MainWindow::refershData(quint8* data, quint16 length)
 
         }
     }
-    quint16 warnValue = ((data[length - 16] << 8) | data[length - 15]);
-    quint16 protValue = ((data[length - 14] << 8) | data[length - 13]);
+    quint16 warnValue = ((data[20] << 8) | data[21]);
+    quint16 protValue = ((data[22] << 8) | data[23]);
     QString warnPortStr = getWarnText(warnValue).append(getProtText(protValue));
     if(warnPortStr.length() == 0)
     {
@@ -350,7 +356,7 @@ void MainWindow::refershData(quint8* data, quint16 length)
     ui->bms_warn_prot->update();
 
 
-    quint16 workValue = ((data[length - 10] << 8) | data[length - 9]);
+    quint16 workValue = ((data[24] << 8) | data[25]);
     ui->label_39->setText(getWorkText(workValue));
     reg1024Value = ((data[0] << 8) | data[1]);
     reg1025Value = ((data[2] << 8) | data[3]);
@@ -589,7 +595,7 @@ void MainWindow::sendGetRealTimeDataCMD()
     buf.append(static_cast<char>(0x00));
     //个数
     buf.append(static_cast<char>(0x00));
-    buf.append(static_cast<char>(0x11));
+    buf.append(static_cast<char>(0x13));
     QByteArray crcArray = calculateCRCArray(buf, 6);
     //crC
     buf.append(crcArray[0]);

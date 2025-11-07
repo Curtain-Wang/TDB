@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1235</width>
-    <height>690</height>
+    <height>836</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <normaloff>:/images/images/battery_monitoring_system_icon.ico</normaloff>:/images/images/battery_monitoring_system_icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
      <widget class="QGroupBox" name="groupBox_33">
       <property name="minimumSize">
        <size>
@@ -408,7 +408,7 @@ QPushButton:pressed {
       </layout>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item>
      <widget class="QLabel" name="label_39">
       <property name="minimumSize">
        <size>
@@ -435,7 +435,7 @@ QPushButton:pressed {
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item>
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
        <string/>
@@ -1401,10 +1401,138 @@ QPushButton:pressed {
          </layout>
         </widget>
        </item>
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="groupBox_17">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_26" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_51">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>LEV值</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_15">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_52">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string> </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QGroupBox" name="groupBox_18">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_27" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_53">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>电感3电流</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_16">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_54">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>A</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item>
      <widget class="QLabel" name="bms_warn_prot">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
