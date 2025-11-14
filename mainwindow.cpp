@@ -9,10 +9,14 @@
 #include <QtMath>
 #include "tformconfig1.h"
 #include "tformconfig2.h"
-#include "tform7.h"
 #include "tform3.h"
+#include "tform7.h"
 #include "tformcali.h"
+#include "tformrecord.h"
+#include <QFile>
+#include <QSettings>
 #include <cmath>
+#include <QDir>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , serialPort(new QSerialPort(this))
@@ -21,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    mainwindow = this;
     init();
 }
 
@@ -83,7 +88,33 @@ void MainWindow::init()
     addrSignHash[1031] = 1;
     addrSignHash[1032] = 1;
     setWindowTitle(TITLE);
+
+    // 检查配置文件是否存在
+    if (!QFile::exists(CONFIG_FILE_PATH)) {
+        QString configFilePath = CONFIG_FILE_PATH;
+        QSettings settings(configFilePath, QSettings::IniFormat);
+
+        // 设置默认值
+        settings.beginGroup(DATA_RECORD_CONFIG);
+        settings.setValue(DATA_RECORD_FILE_PATH, QDir::currentPath());
+        settings.setValue(DATA_RECORD_CYCLE, DEFAULT_DATA_RECORD_CYCLE);
+        settings.endGroup();
+    }
+
+    // 使用 QSettings 加载配置文件
+    QSettings settings(CONFIG_FILE_PATH, QSettings::IniFormat);
+    // 读取 DATA_RECORD_CONFIG 组中的参数
+    settings.beginGroup(DATA_RECORD_CONFIG);
+    dataRecordFilePath = settings.value(DATA_RECORD_FILE_PATH, QDir::currentPath()).toString();
+    dataRecordCycle = settings.value(DATA_RECORD_CYCLE, DEFAULT_DATA_RECORD_CYCLE).toInt();
+    settings.endGroup();
+    saveDataTimer = new QTimer(this);
+    connect(saveDataTimer, &QTimer::timeout, this, &MainWindow::on_saveDataTimer_timeout);
+    saveDataTimer->setInterval(dataRecordCycle * 1000);
+    saveDataTimer->start();
 }
+
+
 void MainWindow::onSendTimerTimeout()
 {
     if(connFlag == 0)
@@ -133,6 +164,51 @@ void MainWindow::refreshPort()
     for (const QSerialPortInfo &portInfo : portList) {
         ui->comboBox_2->addItem(portInfo.portName());
     }
+}
+
+void MainWindow::updateSaveDataInterval(int second)
+{
+    saveDataTimer->setInterval(second * 1000);
+}
+
+void MainWindow::initializeCSVFile(QTextStream &out)
+{
+    QStringList headers;
+    headers.append("时间");
+    headers.append("工作模式");
+    headers.append("告警保护");
+    headers.append("P侧电压");
+    headers.append("P侧电流");
+    headers.append("P侧功率");
+    headers.append("B侧电压");
+    headers.append("B侧电流");
+    headers.append("B侧功率");
+    headers.append("充电mos管温度");
+    headers.append("放电mos管温度");
+    headers.append("转换效率");
+    headers.append("环境温度");
+    headers.append("DCDC最高温度");
+    out << headers.join(",") << "\n";
+}
+
+void MainWindow::writeDataToCSV(QTextStream &out, const QDateTime &currentTime)
+{
+    QStringList data;
+    data << currentTime.toString("yyyy-MM-dd hh:mm:ss");
+    data << ui->label_39->text();
+    data << ui->bms_warn_prot->text();
+    data << ui->lineEdit_0->text();
+    data << ui->lineEdit_1->text();
+    data << ui->lineEdit_2->text();
+    data << ui->lineEdit_3->text();
+    data << ui->lineEdit_4->text();
+    data << ui->lineEdit_9->text();
+    data << ui->lineEdit_6->text();
+    data << ui->lineEdit_7->text();
+    data << ui->lineEdit_10->text();
+    data << ui->lineEdit_8->text();
+    data << ui->lineEdit_5->text();
+    out << data.join(",") << "\n";
 }
 
 void MainWindow::sendPortData(QByteArray data)
@@ -740,6 +816,10 @@ void MainWindow::onTFormDestroyed(QObject *obj)
     {
         tformCali = nullptr;
     }
+    if(obj == tformRecord)
+    {
+        tformRecord = nullptr;
+    }
 }
 
 
@@ -776,5 +856,58 @@ void MainWindow::on_pushButton_8_clicked()
         connect(tformCali, &TFormCali::destroyed, this, &MainWindow::onTFormDestroyed);
     }
     tformCali->show();
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    if(tformRecord == nullptr)
+    {
+        tformRecord = new TFormRecord(this);
+        tformRecord->setAttribute(Qt::WA_DeleteOnClose);
+        connect(tformRecord, &TFormRecord::destroyed, this, &MainWindow::onTFormDestroyed);
+    }
+    tformRecord->show();
+}
+
+void MainWindow::on_saveDataTimer_timeout()
+{
+    if(ui->bms_warn_prot->text() != "未连接")
+    {
+        QDateTime currentTime = QDateTime::currentDateTime();
+
+        QString fileName = QString("%1-%2-%3-%4")
+                               .arg(currentTime.date().year())
+                               .arg(currentTime.date().month(), 2, 10, QChar('0'))
+                               .arg(currentTime.date().day(), 2, 10, QChar('0'))
+                               .arg("记录");
+
+        QString filePath = QString("%1/Save")
+                               .arg(dataRecordFilePath);
+        QDir dir(filePath);
+        if (!dir.exists()) {
+            if(!dir.mkpath("."))
+                return;
+        }
+
+        filePath = QString("%1/Save/%2.csv")
+                       .arg(dataRecordFilePath)
+                       .arg(fileName);
+
+        if(filePath != csvFile.fileName() || !csvFile.isOpen())
+        {
+            csvFile.setFileName(filePath);
+            if (!csvFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+                return;
+            }
+        }
+
+        QTextStream out(&csvFile);
+
+        if (csvFile.size() == 0) {
+            initializeCSVFile(out);
+        }
+        writeDataToCSV(out, currentTime);
+        csvFile.flush();
+    }
 }
 

@@ -3,6 +3,13 @@
 #include <QHash>
 #define NO_WARN_PROT_STR    "无告警、保护"
 #define TITLE "DC48DC48I100-V1.0.0"
+#define CONFIG_FILE_PATH    "./config.ini"
+#define DATA_RECORD_CONFIG   "DATA_RECORD_CONFIG"
+#define DATA_RECORD_FILE_PATH   "data_record_file_path"
+#define DATA_RECORD_CYCLE   "data_record_cycle"
+#define DEFAULT_DATA_RECORD_CYCLE   60
+extern quint32 dataRecordCycle;
+extern QString dataRecordFilePath;
 class QByteArray;
 class QString;
 class MainWindow;

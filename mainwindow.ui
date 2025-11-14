@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1121</width>
+    <width>1162</width>
     <height>591</height>
    </rect>
   </property>
@@ -362,6 +362,50 @@ QPushButton:pressed {
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="pushButton_7">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei</family>
+           <pointsize>-1</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}
+
+QPushButton:pressed {
+    background-color: #388E3C; /* 改变颜色，表示按下状态 */
+    border: 1px solid #2E7D32; /* 添加一个边框，提升立体感 */
+}
+</string>
+         </property>
+         <property name="text">
+          <string>定时记录</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushButton_6">
          <property name="minimumSize">
           <size>
@@ -428,7 +472,7 @@ QPushButton:pressed {
        </font>
       </property>
       <property name="text">
-       <string>工作模式: 未知</string>
+       <string>未知</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1212,16 +1256,6 @@ QLabel[status=&quot;disconnected&quot;] {
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1121</width>
-     <height>17</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

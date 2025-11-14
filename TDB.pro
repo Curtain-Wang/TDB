@@ -18,7 +18,8 @@ SOURCES += \
     tform7.cpp \
     tformcali.cpp \
     tformconfig1.cpp \
-    tformconfig2.cpp
+    tformconfig2.cpp \
+    tformrecord.cpp
 
 HEADERS += \
     globalparam.h \
@@ -29,7 +30,8 @@ HEADERS += \
     tform7.h \
     tformcali.h \
     tformconfig1.h \
-    tformconfig2.h
+    tformconfig2.h \
+    tformrecord.h
 
 FORMS += \
     mainwindow.ui \
@@ -38,7 +40,8 @@ FORMS += \
     tform7.ui \
     tformcali.ui \
     tformconfig1.ui \
-    tformconfig2.ui
+    tformconfig2.ui \
+    tformrecord.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
