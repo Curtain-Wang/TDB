@@ -8,6 +8,13 @@
 #define REG_ADDR_OFFSET   1024
 
 
+#define CONFIG_FILE_PATH    "./config.ini"
+#define DATA_RECORD_CONFIG   "DATA_RECORD_CONFIG"
+#define DATA_RECORD_FILE_PATH   "data_record_file_path"
+#define DATA_RECORD_CYCLE   "data_record_cycle"
+#define DEFAULT_DATA_RECORD_CYCLE   60
+extern quint32 dataRecordCycle;
+extern QString dataRecordFilePath;
 class QByteArray;
 class QString;
 class MainWindow;

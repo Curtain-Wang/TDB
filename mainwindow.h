@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
 class QSerialPort;
 class TForm1;
 class QLineEdit;
@@ -11,6 +12,7 @@ class QLabel;
 class TForm7;
 class TForm3;
 class TFormCali;
+class TFormRecord;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -40,6 +42,9 @@ public:
     QString getProtText(quint16 value);
     QString getWorkText(quint16 value);
     void refreshPort();
+    void updateSaveDataInterval(int second);
+    void initializeCSVFile(QTextStream &out);
+    void writeDataToCSV(QTextStream &out, const QDateTime &currentTime);
 private slots:
     void onSendTimerTimeout();
     void onReceiveTimerTimeout();
@@ -56,19 +61,28 @@ private slots:
     void on_rxResetTimer_timeout();
     void on_pb3_clicked();
 
+    void on_pushButton_7_clicked();
+
+    void on_saveDataTimer_timeout();
+
 private:
     Ui::MainWindow *ui;
     TForm1* tform1 = nullptr;
     TFormConfig1* tformConfig1 = nullptr;
     TForm3* tform3 = nullptr;
     TFormCali* tformCali = nullptr;
+    TFormRecord* tformRecord = nullptr;
     QSerialPort* serialPort;
     QTimer* sendTimer = nullptr;
     QTimer* receiveTimer = nullptr;
     QTimer* txResetTimer = nullptr;
     QTimer* rxResetTimer = nullptr;
+
+    QTimer* saveDataTimer = nullptr;
     QLabel* connectStatusLabel;
     QLabel* runningStatusLabel;
     TForm7* tform7 = nullptr;
+    //文件写入标签
+    QFile csvFile;
 };
 #endif // MAINWINDOW_H

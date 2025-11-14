@@ -3,6 +3,8 @@
 #include <QString>
 #include <mainwindow.h>
 #include <QLineEdit>
+quint32 dataRecordCycle = -1;
+QString dataRecordFilePath = "";
 int waitMessageRemaingTime = 0;
 int dataRefreshRemaingTime = 0;
 //手动标记，0自动 1手动 2双手动
