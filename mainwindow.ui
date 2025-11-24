@@ -1455,7 +1455,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="text">
-             <string> </string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -1507,6 +1507,70 @@ QPushButton:pressed {
           </item>
           <item>
            <widget class="QLabel" name="label_54">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>A</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QGroupBox" name="groupBox_19">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_28" stretch="7,5,1">
+          <item>
+           <widget class="QLabel" name="label_55">
+            <property name="minimumSize">
+             <size>
+              <width>119</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>电感1电流</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_17">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_56">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1603,7 +1667,7 @@ QLabel[status=&quot;disconnected&quot;] {
      <x>0</x>
      <y>0</y>
      <width>1235</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

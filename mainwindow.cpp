@@ -68,6 +68,7 @@ void MainWindow::init()
     addrEditHash[1040] = ui->lineEdit_14;
     addrEditHash[1041] = ui->lineEdit_15;
     addrEditHash[1042] = ui->lineEdit_16;
+    addrEditHash[1043] = ui->lineEdit_17;
 
     addrFormatHash[1024] = 2;
     addrFormatHash[1025] = 2;
@@ -84,6 +85,7 @@ void MainWindow::init()
     addrFormatHash[1040] = 1;
     addrFormatHash[1041] = 3;
     addrFormatHash[1042] = 0;
+    addrFormatHash[1043] = 0;
 
     addrSignHash[1024] = 0;
     addrSignHash[1025] = 1;
@@ -100,6 +102,7 @@ void MainWindow::init()
     addrSignHash[1040] = 0;
     addrSignHash[1041] = 0;
     addrSignHash[1042] = 0;
+    addrSignHash[1043] = 0;
 
     setWindowTitle(TITLE);
 }
@@ -595,7 +598,7 @@ void MainWindow::sendGetRealTimeDataCMD()
     buf.append(static_cast<char>(0x00));
     //个数
     buf.append(static_cast<char>(0x00));
-    buf.append(static_cast<char>(0x13));
+    buf.append(static_cast<char>(0x14));
     QByteArray crcArray = calculateCRCArray(buf, 6);
     //crC
     buf.append(crcArray[0]);
