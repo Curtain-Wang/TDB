@@ -30,8 +30,8 @@ void TForm7::on_lineEdit_returnPressed()
 
     float fValue = ui->lineEdit->text().toFloat();
     quint16 iValue= (quint16)(fValue * qPow(10, pows[lastEditAddr]) + 0.5);
-    quint8 startHigh = ((lastEditAddr >> 8) & 0xFF);
-    quint8 startLow = (lastEditAddr & 0xFF);
+    quint8 startHigh = (((lastEditAddr + 1024) >> 8) & 0xFF);
+    quint8 startLow = ((lastEditAddr + 1024) & 0xFF);
     quint8 valueHigh = ((iValue >> 8) & 0xFF);
     quint8 valueLow = (iValue & 0xFF);
     mainwindow->manualWriteOneCMDBuild(startHigh, startLow, valueHigh, valueLow);

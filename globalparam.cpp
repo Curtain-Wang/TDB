@@ -15,11 +15,11 @@ const char WRITE_MULTIPLE_CMD = 0x10;
 const int MODULE = 0xFF;
 const int DATA_REFRESH_CYCLE = 20;
 QByteArray receiveDataBuf(500, 0);
-quint16 regs[100] = {0};
+qint16 regs[100] = {0};
 quint8 pows[61] ={
     0,0,0,0,0,0,1,1,1,1,
-    1,1,1,1,1,3,3,3,3,3,
-    3,3,3,0,2,2,2,0,0,1,
+    1,1,1,1,1,0,3,0,3,0,
+    3,0,3,0,2,2,2,0,0,1,
     1,2,2,0,0,0,0,1,0,1,
     1,1,1,1,1,2,2,2,2,2,
     2,0,0,2,2,1,1,2,2,1,
@@ -43,7 +43,7 @@ int config2AddrStart1 = 1318;
 int config2AddrStart2 = 1531;
 int lastEditAddr = 0;
 int kbAddrStart = 48;
-const int BR = 9600;
+const int BR = 38400;
 QString connStatus = "连接状态：%1";
 QString runningStatus = "运行模式：%1";
 MainWindow* mainwindow = nullptr;

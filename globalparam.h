@@ -2,7 +2,7 @@
 #define GLOBALPARAM_H
 #include <QHash>
 #define NO_WARN_PROT_STR    "无告警、保护"
-#define TITLE "DC48DC48I100-V1.0.0"
+#define TITLE "DC100DC500P10K-V1.0.0"
 class QByteArray;
 class QString;
 class MainWindow;
@@ -23,7 +23,7 @@ extern QByteArray receiveDataBuf;
 extern int receiveStartIndex;
 extern int receiveEndIndex;
 extern int lastStartAddr;
-extern quint16 regs[100];
+extern qint16 regs[100];
 extern quint8 pows[61];
 extern quint8 sign[61];
 extern int mainAddrStart;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1362</width>
-    <height>813</height>
+    <width>1410</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1686,7 +1686,7 @@ QLabel[status=&quot;disconnected&quot;] {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1362</width>
+     <width>1410</width>
      <height>21</height>
     </rect>
    </property>

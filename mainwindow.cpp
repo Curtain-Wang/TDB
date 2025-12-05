@@ -199,9 +199,9 @@ void MainWindow::dealMessage(quint8* data)
     //查询命令
     if(data[1] == READ_CMD)
     {
-        for(quint16 i = 0; i < data[2]; i = i + 2)
+        for(quint16 i = 0; i < data[2] / 2; i++)
         {
-            regs[i / 2] =((data[2] << 8) | data[3]);
+            regs[i] =((data[3 + i * 2] << 8) | data[4 + i * 2]);
         }
         refreshAll();
     }
@@ -243,7 +243,7 @@ void MainWindow::refreshAll()
     refresh();
     if(tformConfig1 != nullptr)
     {
-        tformConfig1->refresh();
+          tformConfig1->refresh();
     }
 }
 
@@ -285,48 +285,37 @@ void MainWindow::refresh()
     ui->label_39->setText(getWorkText(regs[4]));
 }
 
+
 QString MainWindow::getWarnText(quint16 value)
 {
     QString text;
     if((value & 1) == 1)
     {
-        text.append(" 充放电端总电压过压告警");
+        text.append(" P侧过压保护");
     }
     if(((value >> 1) & 1) == 1)
     {
-        text.append(" 充放电端总电压低压告警");
+        text.append(" P侧欠压保护");
     }
     if(((value >> 2) & 1) == 1)
     {
-        text.append(" 电池总压过压告警");
+        text.append(" 电池过压保护");
     }
     if(((value >> 3) & 1) == 1)
     {
-        text.append(" 电池总压欠压告警");
-    }
-    if(((value >> 4) & 1) == 1)
-    {
-        text.append(" 充电过流告警");
+        text.append(" 电池欠压保护");
     }
     if(((value >> 5) & 1) == 1)
     {
-        text.append(" 放电过流告警");
-    }
-    if(((value >> 8) & 1) == 1)
-    {
-        text.append(" 充电MOS管高温告警");
+        text.append(" 充放电过流保护");
     }
     if(((value >> 9) & 1) == 1)
     {
-        text.append(" 放电MOS管高温告警");
-    }
-    if(((value >> 10) & 1) == 1)
-    {
-        text.append(" 环境温度高告警");
+        text.append(" 高温保护");
     }
     if(((value >> 12) & 1) == 1)
     {
-        text.append(" 电源反接告警");
+        text.append(" 高温告警");
     }
     return text;
 }
@@ -394,48 +383,16 @@ QString MainWindow::getWorkText(quint16 value)
     QString text = "工作模式:";
     if(value == 0)
     {
-        text.append(" 初始化");
-        return text;
-    }
-    if((value & 1) == 1)
+        text.append(" 待机状态");
+    }else if(value == 1)
     {
-        text.append(" BUCK限流充电");
-    }
-    if(((value >> 1) & 1) == 1)
+        text.append(" 恒压限流模式");
+    }else if(value == 3)
     {
-        text.append(" 直通充电");
-    }
-    if(((value >> 2) & 1) == 1)
+        text.append(" 恒流限压模式");
+    }else
     {
-        text.append(" 直通放电");
-    }
-    if(((value >> 3) & 1) == 1)
-    {
-        text.append(" BUCK限流放电");
-    }
-    if(((value >> 4) & 1) == 1)
-    {
-        text.append(" BOOST限流放电");
-    }
-    if(((value >> 5) & 1) == 1)
-    {
-        text.append(" 静置待机");
-    }
-    if(((value >> 6) & 1) == 1)
-    {
-        text.append(" 保护状态");
-    }
-    if(((value >> 8) & 1) == 1)
-    {
-        text.append(" 继电器导通");
-    }
-    if(((value >> 9) & 1) == 1)
-    {
-        text.append(" 放电主MOS管开启");
-    }
-    if(((value >> 10) & 1) == 1)
-    {
-        text.append(" 充电主MOS管开启");
+        text.append(" 未知");
     }
     return text;
 }
