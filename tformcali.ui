@@ -628,7 +628,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d61">
+         <widget class="QLineEdit" name="l22">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -697,7 +697,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d60">
+         <widget class="QLineEdit" name="l21">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -766,7 +766,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d53">
+         <widget class="QLineEdit" name="l18">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -835,7 +835,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d52">
+         <widget class="QLineEdit" name="l17">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1488,7 +1488,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d57">
+         <widget class="QLineEdit" name="l20">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1557,7 +1557,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d56">
+         <widget class="QLineEdit" name="l19">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1626,7 +1626,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d49">
+         <widget class="QLineEdit" name="l16">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1695,7 +1695,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="d48">
+         <widget class="QLineEdit" name="l15">
           <property name="enabled">
            <bool>false</bool>
           </property>

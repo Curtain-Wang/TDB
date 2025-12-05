@@ -14,31 +14,25 @@ SOURCES += \
     mainwindow.cpp \
     mylineedit.cpp \
     tform1.cpp \
-    tform3.cpp \
     tform7.cpp \
     tformcali.cpp \
-    tformconfig1.cpp \
-    tformconfig2.cpp
+    tformconfig1.cpp
 
 HEADERS += \
     globalparam.h \
     mainwindow.h \
     mylineedit.h \
     tform1.h \
-    tform3.h \
     tform7.h \
     tformcali.h \
-    tformconfig1.h \
-    tformconfig2.h
+    tformconfig1.h
 
 FORMS += \
     mainwindow.ui \
     tform1.ui \
-    tform3.ui \
     tform7.ui \
     tformcali.ui \
-    tformconfig1.ui \
-    tformconfig2.ui
+    tformconfig1.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

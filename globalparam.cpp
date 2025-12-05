@@ -15,6 +15,25 @@ const char WRITE_MULTIPLE_CMD = 0x10;
 const int MODULE = 0xFF;
 const int DATA_REFRESH_CYCLE = 20;
 QByteArray receiveDataBuf(500, 0);
+quint16 regs[100] = {0};
+quint8 pows[61] ={
+    0,0,0,0,0,0,1,1,1,1,
+    1,1,1,1,1,3,3,3,3,3,
+    3,3,3,0,2,2,2,0,0,1,
+    1,2,2,0,0,0,0,1,0,1,
+    1,1,1,1,1,2,2,2,2,2,
+    2,0,0,2,2,1,1,2,2,1,
+    1
+};
+quint8 sign[61] ={
+    0,0,0,0,0,0,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,1,
+    1,1,1,0,1,1,1,1,1,1,
+    1,1,1,0,0,0,0,1,0,1,
+    1,1,1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,1,1,
+    1
+};
 int receiveStartIndex = 0;
 int receiveEndIndex = 0;
 int lastStartAddr = 0x00;
@@ -28,9 +47,6 @@ const int BR = 9600;
 QString connStatus = "连接状态：%1";
 QString runningStatus = "运行模式：%1";
 MainWindow* mainwindow = nullptr;
-QHash<quint16, QLineEdit*> addrEditHash;
-QHash<quint16, quint8> addrFormatHash;
-QHash<quint16, quint8> addrSignHash;
 quint16 reg1024Value = 0;
 qint16 reg1025Value = 0;
 quint16 reg1027Value = 0;

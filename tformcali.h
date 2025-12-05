@@ -14,10 +14,7 @@ class TFormCali : public QWidget
 public:
     explicit TFormCali(QWidget *parent = nullptr);
     ~TFormCali();
-    void init();
-    void annalyzeData(quint8* data, quint16 length);
-    void annalyzeOneData(quint16 addr, quint16 value);
-    void sendGetDataCmd();
+    void refresh();
 private slots:
     void on_pushButton_2_clicked();
 

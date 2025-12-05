@@ -34,7 +34,8 @@ public:
     void cacheReceiveData();
     bool receiveDataCRCCheck(const QByteArray &data);
     void dealMessage(quint8* data);
-    void refershData(quint8* data, quint16 length);
+    void refreshAll();
+    void refresh();
     QString getWarnText(quint16 value);
     QString getProtText(quint16 value);
     QString getWorkText(quint16 value);
@@ -48,8 +49,6 @@ private slots:
 
     void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
-
     void on_pushButton_6_clicked();
 
     void on_pushButton_8_clicked();
@@ -58,7 +57,6 @@ private:
     Ui::MainWindow *ui;
     TForm1* tform1 = nullptr;
     TFormConfig1* tformConfig1 = nullptr;
-    TFormConfig2* tformConfig2 = nullptr;
     TForm3* tform3 = nullptr;
     TFormCali* tformCali = nullptr;
     QSerialPort* serialPort;

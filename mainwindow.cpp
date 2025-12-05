@@ -8,9 +8,7 @@
 #include "tform1.h"
 #include <QtMath>
 #include "tformconfig1.h"
-#include "tformconfig2.h"
 #include "tform7.h"
-#include "tform3.h"
 #include "tformcali.h"
 #include <cmath>
 MainWindow::MainWindow(QWidget *parent)
@@ -51,58 +49,6 @@ void MainWindow::init()
     ui->statusbar->addWidget(connectStatusLabel);
     runningStatusLabel->setMinimumWidth(150);
     ui->statusbar->addWidget(runningStatusLabel);
-
-    //寄存器地址和LineEdit映射
-    addrEditHash[1024] = ui->lineEdit_0;
-    addrEditHash[1025] = ui->lineEdit_1;
-    addrEditHash[1026] = ui->lineEdit_2;
-    addrEditHash[1027] = ui->lineEdit_3;
-    addrEditHash[1028] = ui->lineEdit_4;
-    addrEditHash[1029] = ui->lineEdit_5;
-    addrEditHash[1030] = ui->lineEdit_6;
-    addrEditHash[1031] = ui->lineEdit_7;
-    addrEditHash[1032] = ui->lineEdit_8;
-    addrEditHash[1037] = ui->lineEdit_11;
-    addrEditHash[1038] = ui->lineEdit_12;
-    addrEditHash[1039] = ui->lineEdit_13;
-    addrEditHash[1040] = ui->lineEdit_14;
-    addrEditHash[1041] = ui->lineEdit_15;
-    addrEditHash[1042] = ui->lineEdit_16;
-    addrEditHash[1043] = ui->lineEdit_17;
-
-    addrFormatHash[1024] = 2;
-    addrFormatHash[1025] = 2;
-    addrFormatHash[1026] = 0;
-    addrFormatHash[1027] = 2;
-    addrFormatHash[1028] = 2;
-    addrFormatHash[1029] = 1;
-    addrFormatHash[1030] = 1;
-    addrFormatHash[1031] = 1;
-    addrFormatHash[1032] = 1;
-    addrFormatHash[1037] = 1;
-    addrFormatHash[1038] = 1;
-    addrFormatHash[1039] = 1;
-    addrFormatHash[1040] = 1;
-    addrFormatHash[1041] = 3;
-    addrFormatHash[1042] = 0;
-    addrFormatHash[1043] = 0;
-
-    addrSignHash[1024] = 0;
-    addrSignHash[1025] = 1;
-    addrSignHash[1026] = 1;
-    addrSignHash[1027] = 0;
-    addrSignHash[1028] = 1;
-    addrSignHash[1029] = 1;
-    addrSignHash[1030] = 1;
-    addrSignHash[1031] = 1;
-    addrSignHash[1032] = 1;
-    addrSignHash[1037] = 0;
-    addrSignHash[1038] = 0;
-    addrSignHash[1039] = 0;
-    addrSignHash[1040] = 0;
-    addrSignHash[1041] = 0;
-    addrSignHash[1042] = 0;
-    addrSignHash[1043] = 0;
 
     setWindowTitle(TITLE);
 }
@@ -253,98 +199,76 @@ void MainWindow::dealMessage(quint8* data)
     //查询命令
     if(data[1] == READ_CMD)
     {
-        //主页的数据
-        if(lastStartAddr == mainAddrStart)
+        for(quint16 i = 0; i < data[2]; i = i + 2)
         {
-            refershData(&data[3], data[2]);  // 传递左值
-        }else if(lastStartAddr == config1AddrStart)//配置界面1
-        {
-            if(tformConfig1 != nullptr)
-            {
-                tformConfig1->annalyzeData(&data[3], data[2]);
-            }
-        }else if(lastStartAddr == config2AddrStart1)//配置界面2第一段
-        {
-            if(tformConfig2 != nullptr)
-            {
-                tformConfig2->annalyzeData(&data[3], data[2]);
-            }
-            //第一段数据收到之后，发第二段命令
-            tformConfig2->sendGetData2Cmd();
-        }else if(lastStartAddr == config2AddrStart2)//配置界面2第二段
-        {
-            if(tformConfig2 != nullptr)
-            {
-                tformConfig2->annalyzeData(&data[3], data[2]);
-            }
-        }else if(lastStartAddr == 48)//校准界面
-        {
-            if(tformCali != nullptr)
-            {
-                tformCali->annalyzeData(&data[3], data[2]);
-            }
+            regs[i / 2] =((data[2] << 8) | data[3]);
         }
+        refreshAll();
     }
-    else if(data[1] == WRITE_ONE_CMD)
-    {
-        //写入命令返回，立刻回显
-        quint16 addr = ((data[2] << 8) | data[3]);
-        quint16 value = ((data[4] << 8) | data[5]);
-        if(addr < config2AddrStart1 && addr >= config1AddrStart)
-        {
-            if(tformConfig1 != nullptr)
-            {
-                tformConfig1->annalyzeOneData(addr, value);
-            }
-        }else if(addr >= config2AddrStart1)
-        {
-            if(tformConfig2 != nullptr)
-            {
-                tformConfig2->annalyzeOneData(addr, value);
-            }
-        }else if(addr < config1AddrStart)
-        {
-            if(tformCali != nullptr)
-            {
-                tformCali->sendGetDataCmd();
-            }
-            QMessageBox::information(this, tr("提示"), tr("写入成功!"));
-        }
+    // else if(data[1] == WRITE_ONE_CMD)
+    // {
+    //     //写入命令返回，立刻回显
+    //     quint16 addr = ((data[2] << 8) | data[3]);
+    //     quint16 value = ((data[4] << 8) | data[5]);
+    //     if(addr < config2AddrStart1 && addr >= config1AddrStart)
+    //     {
+    //         if(tformConfig1 != nullptr)
+    //         {
+    //             tformConfig1->annalyzeOneData(addr, value);
+    //         }
+    //     }else if(addr >= config2AddrStart1)
+    //     {
+    //         if(tformConfig2 != nullptr)
+    //         {
+    //             tformConfig2->annalyzeOneData(addr, value);
+    //         }
+    //     }else if(addr < config1AddrStart)
+    //     {
+    //         if(tformCali != nullptr)
+    //         {
+    //             tformCali->sendGetDataCmd();
+    //         }
+    //         QMessageBox::information(this, tr("提示"), tr("写入成功!"));
+    //     }
 
-    }
-    else if(data[1] == WRITE_MULTIPLE_CMD)
+    // }
+    // else if(data[1] == WRITE_MULTIPLE_CMD)
+    // {
+    //     //多个写入命令返回，暂时没有处理逻辑、
+    // }
+}
+
+void MainWindow::refreshAll()
+{
+    refresh();
+    if(tformConfig1 != nullptr)
     {
-        //多个写入命令返回，暂时没有处理逻辑、
+        tformConfig1->refresh();
     }
 }
 
-void MainWindow::refershData(quint8* data, quint16 length)
+void MainWindow::refresh()
 {
-    for (int i = 0; i < length; i += 2)
-    {
-        quint16 addr = lastStartAddr + i / 2;
-        if(addrEditHash.value(addr, nullptr) == nullptr)
-        {
-            continue;
-        }
-        quint16 high = data[i];
-        quint16 low = data[i + 1];
-        if(addrSignHash[addr])
-        {
-            //有符号
-            qint16 value = ((high << 8) | low);
-            addrEditHash[addr]->setText(QString::number(static_cast<float>(value * 1.0/ qPow(10, addrFormatHash[addr])), 'f', addrFormatHash[addr]));
-        }else
-        {
-            //无符号
-            quint16 value = ((high << 8) | low);
-            addrEditHash[addr]->setText(QString::number(static_cast<float>(value * 1.0/ qPow(10, addrFormatHash[addr])), 'f', addrFormatHash[addr]));
-
-        }
-    }
-    quint16 warnValue = ((data[20] << 8) | data[21]);
-    quint16 protValue = ((data[22] << 8) | data[23]);
-    QString warnPortStr = getWarnText(warnValue).append(getProtText(protValue));
+    ui->l6->setText(QString::number(static_cast<float>(regs[6] * 1.0/ qPow(10, pows[6])), 'f', pows[6]));
+    ui->l7->setText(QString::number(static_cast<float>(regs[7] * 1.0/ qPow(10, pows[7])), 'f', pows[7]));
+    ui->l8->setText(QString::number(static_cast<float>(regs[8] * 1.0/ qPow(10, pows[8])), 'f', pows[8]));
+    ui->l9->setText(QString::number(static_cast<float>(regs[9] * 1.0/ qPow(10, pows[9])), 'f', pows[9]));
+    ui->l10->setText(QString::number(static_cast<float>(regs[10] * 1.0/ qPow(10, pows[10])), 'f', pows[10]));
+    ui->l11->setText(QString::number(static_cast<float>(regs[11] * 1.0/ qPow(10, pows[11])), 'f', pows[11]));
+    ui->l12->setText(QString::number(static_cast<float>(regs[12] * 1.0/ qPow(10, pows[12])), 'f', pows[12]));
+    ui->l13->setText(QString::number(static_cast<float>(regs[13] * 1.0/ qPow(10, pows[13])), 'f', pows[13]));
+    ui->l14->setText(QString::number(static_cast<float>(regs[14] * 1.0/ qPow(10, pows[14])), 'f', pows[14]));
+    ui->l23->setText(QString::number(static_cast<float>(regs[23] * 1.0/ qPow(10, pows[23])), 'f', pows[23]));
+    ui->l24->setText(QString::number(static_cast<float>(regs[24] * 1.0/ qPow(10, pows[24])), 'f', pows[24]));
+    ui->l25->setText(QString::number(static_cast<float>(regs[25] * 1.0/ qPow(10, pows[25])), 'f', pows[25]));
+    ui->l26->setText(QString::number(static_cast<float>(regs[26] * 1.0/ qPow(10, pows[26])), 'f', pows[26]));
+    ui->l27->setText(QString::number(static_cast<float>(regs[27] * 1.0/ qPow(10, pows[27])), 'f', pows[27]));
+    ui->l28->setText(QString::number(static_cast<float>(regs[28] * 1.0/ qPow(10, pows[28])), 'f', pows[28]));
+    ui->l29->setText(QString::number(static_cast<float>(regs[29] * 1.0/ qPow(10, pows[29])), 'f', pows[29]));
+    ui->l30->setText(QString::number(static_cast<float>(regs[30] * 1.0/ qPow(10, pows[30])), 'f', pows[30]));
+    ui->l31->setText(QString::number(static_cast<float>(regs[31] * 1.0/ qPow(10, pows[31])), 'f', pows[31]));
+    ui->l32->setText(QString::number(static_cast<float>(regs[32] * 1.0/ qPow(10, pows[32])), 'f', pows[32]));
+    QString warnPortStr = getWarnText(regs[5]);
     if(warnPortStr.length() == 0)
     {
         ui->bms_warn_prot->setText(NO_WARN_PROT_STR);
@@ -358,32 +282,7 @@ void MainWindow::refershData(quint8* data, quint16 length)
     ui->bms_warn_prot->style()->polish(ui->bms_warn_prot);
     ui->bms_warn_prot->update();
 
-
-    quint16 workValue = ((data[24] << 8) | data[25]);
-    ui->label_39->setText(getWorkText(workValue));
-    reg1024Value = ((data[0] << 8) | data[1]);
-    reg1025Value = ((data[2] << 8) | data[3]);
-    reg1027Value = ((data[6] << 8) | data[7]);
-    reg1028Value = ((data[8] << 8) | data[9]);
-    if(tform3 != nullptr)
-    {
-       tform3->refreshRealTimeData();
-    }
-    //电池端总功率计算
-    float val1 = ui->lineEdit_3->text().toFloat();
-    float val2 = ui->lineEdit_4->text().toFloat();
-    float result = val1 * val2;
-    ui->lineEdit_9->setText(QString::number(result, 'f', 0));
-    //充电总功率计算
-    val1 = ui->lineEdit_0->text().toFloat();
-    val2 = ui->lineEdit_1->text().toFloat();
-    result = val1 * val2;
-    ui->lineEdit_2->setText(QString::number(result, 'f', 0));
-    //转换效率计算
-    val1 = ui->lineEdit_2->text().toFloat();
-    val2 = ui->lineEdit_9->text().toFloat();
-    result = std::abs(val1) < std::abs(val2) ? val1 * 100 / val2 : val2 * 100 / val1;
-    ui->lineEdit_10->setText(QString::number(result, 'f', 2));
+    ui->label_39->setText(getWorkText(regs[4]));
 }
 
 QString MainWindow::getWarnText(quint16 value)
@@ -598,12 +497,11 @@ void MainWindow::sendGetRealTimeDataCMD()
     buf.append(static_cast<char>(0x00));
     //个数
     buf.append(static_cast<char>(0x00));
-    buf.append(static_cast<char>(0x14));
+    buf.append(static_cast<char>(0x3D));
     QByteArray crcArray = calculateCRCArray(buf, 6);
     //crC
     buf.append(crcArray[0]);
     buf.append(crcArray[1]);
-    lastStartAddr = 1024;
     sendPortData(buf);
     dataRefreshRemaingTime = DATA_REFRESH_CYCLE;
 }
@@ -746,32 +644,11 @@ void MainWindow::onTFormDestroyed(QObject *obj)
     {
         tformConfig1 = nullptr;
     }
-    if(obj == tformConfig2)
-    {
-        tformConfig2 = nullptr;
-    }
-    if(obj == tform3)
-    {
-        tform3 = nullptr;
-    }
     if(obj == tformCali)
     {
         tformCali = nullptr;
     }
 }
-
-
-void MainWindow::on_pushButton_5_clicked()
-{
-    if(tformConfig2 == nullptr)
-    {
-        tformConfig2 = new TFormConfig2(this);
-        tformConfig2->setAttribute(Qt::WA_DeleteOnClose);
-        connect(tformConfig2, &TFormConfig2::destroyed, this, &MainWindow::onTFormDestroyed);
-    }
-    tformConfig2->show();
-}
-
 
 void MainWindow::on_pushButton_6_clicked()
 {

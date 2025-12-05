@@ -11,7 +11,7 @@ TFormConfig1::TFormConfig1(QWidget *parent)
     ui->setupUi(this);
     //设置窗口标志，确保有边框和标题栏、最小化、关闭，最大化
     setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-    init();
+    refresh();
 }
 
 TFormConfig1::~TFormConfig1()
@@ -19,99 +19,27 @@ TFormConfig1::~TFormConfig1()
     delete ui;
 }
 
-void TFormConfig1::init()
+void TFormConfig1::refresh()
 {
-    //寄存器地址和LineEdit映射
-    addrEditHash[1280] = ui->l1280;
-    addrEditHash[1281] = ui->l1281;
-    addrEditHash[1284] = ui->l1284;
-    addrEditHash[1290] = ui->l1290;
-    addrEditHash[1291] = ui->l1291;
-    addrEditHash[1292] = ui->l1292;
-    addrEditHash[1293] = ui->l1293;
-    addrEditHash[1294] = ui->l1294;
-    addrEditHash[1295] = ui->l1295;
-    addrEditHash[1296] = ui->l1296;
-    addrEditHash[1301] = ui->l1301;
-    addrEditHash[1305] = ui->l1305;
-    addrEditHash[1306] = ui->l1306;
-    addrEditHash[1309] = ui->l1309;
-    addrEditHash[1310] = ui->l1310;
-    addrEditHash[1313] = ui->l1313;
-    addrEditHash[1314] = ui->l1314;
-    addrEditHash[1317] = ui->l1317;
-    //寄存器地址和小数位映射
-    addrFormatHash[1280] = 0;
-    addrFormatHash[1281] = 2;
-    addrFormatHash[1284] = 0;
-    addrFormatHash[1290] = 2;
-    addrFormatHash[1291] = 2;
-    addrFormatHash[1292] = 0;
-    addrFormatHash[1293] = 2;
-    addrFormatHash[1294] = 2;
-    addrFormatHash[1295] = 2;
-    addrFormatHash[1296] = 2;
-    addrFormatHash[1301] = 2;
-    addrFormatHash[1305] = 2;
-    addrFormatHash[1306] = 2;
-    addrFormatHash[1309] = 2;
-    addrFormatHash[1310] = 2;
-    addrFormatHash[1313] = 2;
-    addrFormatHash[1314] = 2;
-    addrFormatHash[1317] = 2;
-    //寄存器地址和符号映射
-    addrSignHash[1280] = 0;
-    addrSignHash[1281] = 1;
-    addrSignHash[1284] = 1;
-    addrSignHash[1290] = 0;
-    addrSignHash[1291] = 1;
-    addrSignHash[1292] = 0;
-    addrSignHash[1293] = 0;
-    addrSignHash[1294] = 1;
-    addrSignHash[1295] = 0;
-    addrSignHash[1296] = 0;
-    addrSignHash[1301] = 0;
-    addrSignHash[1305] = 0;
-    addrSignHash[1306] = 0;
-    addrSignHash[1309] = 0;
-    addrSignHash[1310] = 0;
-    addrSignHash[1313] = 0;
-    addrSignHash[1314] = 0;
-    addrSignHash[1317] = 0;
-    sendGetDataCmd();
-}
-
-void TFormConfig1::sendGetDataCmd()
-{
-    mainwindow->manualReadCMDBuild(0x05, 0x00, 0x00, 0x26);
-    lastStartAddr = 1280;
-}
-
-void TFormConfig1::annalyzeData(quint8* data, quint16 length)
-{
-    for (int i = 0; i < length; i += 2)
-    {
-        quint16 addr = lastStartAddr + i / 2;
-        quint16 high = data[i];
-        quint16 low = data[i + 1];
-        quint16 value = ((high << 8) | low);
-        annalyzeOneData(addr, value);
-    }
-}
-
-void TFormConfig1::annalyzeOneData(quint16 addr, quint16 value)
-{
-    if(addrEditHash.value(addr, nullptr) == nullptr)
-    {
-        return;
-    }
-    if(addrSignHash[addr])
-    {
-        //有符号
-        qint16 sValue = value;
-        addrEditHash[addr]->setText(QString::number(static_cast<float>(sValue * 1.0/ qPow(10, addrFormatHash[addr])), 'f', addrFormatHash[addr]));
-    }else
-    {
-        addrEditHash[addr]->setText(QString::number(static_cast<float>(value * 1.0/ qPow(10, addrFormatHash[addr])), 'f', addrFormatHash[addr]));
-    }
+    ui->l2->setText(QString::number(static_cast<float>(regs[2] * 1.0/ qPow(10, pows[2])), 'f', pows[2]));
+    ui->l33->setText(QString::number(static_cast<float>(regs[33] * 1.0/ qPow(10, pows[33])), 'f', pows[33]));
+    ui->l34->setText(QString::number(static_cast<float>(regs[34] * 1.0/ qPow(10, pows[34])), 'f', pows[34]));
+    ui->l35->setText(QString::number(static_cast<float>(regs[35] * 1.0/ qPow(10, pows[35])), 'f', pows[35]));
+    ui->l36->setText(QString::number(static_cast<float>(regs[36] * 1.0/ qPow(10, pows[36])), 'f', pows[36]));
+    ui->l37->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[37])), 'f', pows[37]));
+    ui->l38->setText(QString::number(static_cast<float>(regs[35] * 1.0/ qPow(10, pows[38])), 'f', pows[38]));
+    ui->l39->setText(QString::number(static_cast<float>(regs[36] * 1.0/ qPow(10, pows[39])), 'f', pows[39]));
+    ui->l40->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[40])), 'f', pows[40]));
+    ui->l41->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[41])), 'f', pows[41]));
+    ui->l42->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[42])), 'f', pows[42]));
+    ui->l43->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[43])), 'f', pows[43]));
+    ui->l44->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[44])), 'f', pows[44]));
+    ui->l45->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[45])), 'f', pows[45]));
+    ui->l46->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[46])), 'f', pows[46]));
+    ui->l47->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[47])), 'f', pows[47]));
+    ui->l48->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[48])), 'f', pows[48]));
+    ui->l49->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[49])), 'f', pows[49]));
+    ui->l50->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[50])), 'f', pows[50]));
+    ui->l51->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[51])), 'f', pows[51]));
+    ui->l52->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[52])), 'f', pows[52]));
 }
