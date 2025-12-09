@@ -22,7 +22,7 @@ TFormConfig1::~TFormConfig1()
 void TFormConfig1::refresh()
 {
     ui->l2->setText(QString::number(static_cast<float>(regs[2] * 1.0/ qPow(10, pows[2])), 'f', pows[2]));
-    ui->l4->setText(QString::number(regs[4]));
+    ui->l3->setText(QString::number(regs[3]));
     ui->l33->setText(QString::number(static_cast<float>(regs[33] * 1.0/ qPow(10, pows[33])), 'f', pows[33]));
     ui->l34->setText(QString::number(static_cast<float>(regs[34] * 1.0/ qPow(10, pows[34])), 'f', pows[34]));
     ui->l35->setText(QString::number(static_cast<float>(regs[35] * 1.0/ qPow(10, pows[35])), 'f', pows[35]));
