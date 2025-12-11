@@ -117,7 +117,7 @@ void TFormCali::on_pushButton_6_clicked()
 
     float fValue = ui->lineEdit_6->text().toFloat();
     quint16 iValue= (quint16)(fValue * 100 + 0.5);
-    quint16 addr = 27 + 1024;
+    quint16 addr = 57 + 1024;
     quint8 startHigh = ((addr >> 8) & 0xFF);
     quint8 startLow = (addr & 0xFF);
     quint8 valueHigh = ((iValue >> 8) & 0xFF);
