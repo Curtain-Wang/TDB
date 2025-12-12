@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     , serialPort(new QSerialPort(this))
     , connectStatusLabel(new QLabel(this))
     , runningStatusLabel(new QLabel(this))
+    , txResetTimer(new QTimer(this))
+    , rxResetTimer(new QTimer(this))
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -49,6 +51,11 @@ void MainWindow::init()
     ui->statusbar->addWidget(connectStatusLabel);
     runningStatusLabel->setMinimumWidth(150);
     ui->statusbar->addWidget(runningStatusLabel);
+    //指示灯定时器相关
+    txResetTimer->setSingleShot(true);
+    connect(txResetTimer, &QTimer::timeout, this, &MainWindow::on_txResetTimer_timeout);
+    rxResetTimer->setSingleShot(true);
+    connect(rxResetTimer, &QTimer::timeout, this, &MainWindow::on_rxResetTimer_timeout);
 
     setWindowTitle(TITLE);
 }
@@ -125,6 +132,21 @@ void MainWindow::cacheReceiveData()
         for (auto byte : data) {
             receiveDataBuf[receiveEndIndex] = byte;
             receiveEndIndex = (receiveEndIndex + 1) % 500;
+        }
+        if(data.size() > 0)
+        {
+            //闪一下绿色
+            ui->lab_rx->setStyleSheet(
+                "QLabel {"
+                "    border-radius: 5px;"
+                "    background-color: #00F000;"
+                "}"
+                );
+            if(rxResetTimer->isActive())
+            {
+                rxResetTimer->stop();
+            }
+            rxResetTimer->start(500);
         }
     }
 }
@@ -420,6 +442,18 @@ void MainWindow::sendSerialData(const QByteArray &data)
         tform1->displayInfo("上位机发送的串口数据：" + data.toHex());
     }
     serialPort->write(data);
+    //闪一下绿色
+    ui->lab_tx->setStyleSheet(
+        "QLabel {"
+        "    border-radius: 5px;"
+        "    background-color: #00F000;"
+        "}"
+        );
+    if(txResetTimer->isActive())
+    {
+        txResetTimer->stop();
+    }
+    txResetTimer->start(500);//500ms后恢复
 }
 
 // 计算Modbus-RTU CRC16的方法，返回高低字节的QByteArray
@@ -628,5 +662,27 @@ void MainWindow::on_pushButton_8_clicked()
         connect(tformCali, &TFormCali::destroyed, this, &MainWindow::onTFormDestroyed);
     }
     tformCali->show();
+}
+
+void MainWindow::on_txResetTimer_timeout()
+{
+    //恢复灰色
+    ui->lab_tx->setStyleSheet(
+        "QLabel {"
+        "    border-radius: 5px;"
+        "    background-color: #D3D3D3;"
+        "}"
+        );
+}
+
+void MainWindow::on_rxResetTimer_timeout()
+{
+    //恢复灰色
+    ui->lab_rx->setStyleSheet(
+        "QLabel {"
+        "    border-radius: 5px;"
+        "    background-color: #D3D3D3;"
+        "}"
+        );
 }
 

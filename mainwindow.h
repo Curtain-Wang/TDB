@@ -52,7 +52,8 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_8_clicked();
-
+    void on_txResetTimer_timeout();
+    void on_rxResetTimer_timeout();
 private:
     Ui::MainWindow *ui;
     TForm1* tform1 = nullptr;
@@ -62,7 +63,8 @@ private:
     QSerialPort* serialPort;
     QTimer* sendTimer = nullptr;
     QTimer* receiveTimer = nullptr;
-
+    QTimer* txResetTimer = nullptr;
+    QTimer* rxResetTimer = nullptr;
     QLabel* connectStatusLabel;
     QLabel* runningStatusLabel;
     TForm7* tform7 = nullptr;

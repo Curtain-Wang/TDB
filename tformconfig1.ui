@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1253</width>
-    <height>516</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -420,7 +420,7 @@ QLineEdit:disabled {
             </font>
            </property>
            <property name="text">
-            <string>P侧输入输出电流设置</string>
+            <string>P侧输出电流设置</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1845,7 +1845,7 @@ QLineEdit:disabled {
             </font>
            </property>
            <property name="text">
-            <string>B侧输入输出电流设置</string>
+            <string>B侧输出电流设置</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
