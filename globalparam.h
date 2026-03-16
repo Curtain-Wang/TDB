@@ -2,7 +2,7 @@
 #define GLOBALPARAM_H
 #include <QHash>
 #define NO_WARN_PROT_STR    "无告警、保护"
-#define TITLE "DC100DC500P10K-V1.0.0"
+#define TITLE "DC100DC500P10K-V1.0.1"
 class QByteArray;
 class QString;
 class MainWindow;
