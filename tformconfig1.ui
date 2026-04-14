@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1253</width>
-    <height>551</height>
+    <height>555</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -837,6 +837,11 @@ QComboBox::item:hover {
 }
 </string>
            </property>
+           <item>
+            <property name="text">
+             <string>待机</string>
+            </property>
+           </item>
            <item>
             <property name="text">
              <string>恒压限流</string>

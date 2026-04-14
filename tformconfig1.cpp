@@ -23,7 +23,13 @@ TFormConfig1::~TFormConfig1()
 void TFormConfig1::refresh()
 {
     ui->c2->blockSignals(true);
-    ui->c2->setCurrentIndex(regs[2] == 0 ? 0 : (regs[2] - 1));
+    if(regs[2] < 2)
+    {
+        ui->c2->setCurrentIndex(regs[2]);
+    }else
+    {
+        ui->c2->setCurrentIndex(2);
+    }
     preModeIndex = ui->c2->currentIndex();
     ui->c2->blockSignals(false);
     if(regs[3] == 4)
@@ -35,7 +41,6 @@ void TFormConfig1::refresh()
         ui->pb3->setText("启动");
         ui->pb3->setStyleSheet(GREEN_BUTTON_STYLE);
     }
-
 
     ui->l33->setText(QString::number(static_cast<float>(regs[33] * 1.0/ qPow(10, pows[33])), 'f', pows[33]));
     ui->l34->setText(QString::number(static_cast<float>(regs[34] * 1.0/ qPow(10, pows[34])), 'f', pows[34]));
@@ -70,7 +75,13 @@ void TFormConfig1::on_c2_currentIndexChanged(int index)
     ui->c2->setCurrentIndex(preModeIndex);
     ui->c2->blockSignals(false);
     quint16 addr = REG_ADDR_OFFSET + 2;
-    mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), (index >> 8), (index & 0xFF));
+    if(index < 2)
+    {
+        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), (index >> 8), (index & 0xFF));
+    }else
+    {
+        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), 0, 3);
+    }
 }
 
 void TFormConfig1::on_pb3_clicked()

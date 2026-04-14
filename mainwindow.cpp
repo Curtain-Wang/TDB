@@ -409,7 +409,7 @@ QString MainWindow::getWorkText(quint16 value)
     }else if(value == 1)
     {
         text.append(" 恒压限流模式");
-    }else if(value == 3)
+    }else if(value == 2)
     {
         text.append(" 恒流限压模式");
     }else
