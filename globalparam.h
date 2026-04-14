@@ -3,6 +3,11 @@
 #include <QHash>
 #define NO_WARN_PROT_STR    "无告警、保护"
 #define TITLE "DC100DC500P10K-V1.0.1"
+#define RED_BUTTON_STYLE                "QPushButton { background-color: #EF5350; border: 2px solid #E53935; color: white; font-size: 22px; padding: 10px; border-radius: 10px; width: 100px; height: 50px; text-align: center; } QPushButton:hover { background-color: #e14a47; border: 2px solid #D32F2F; } QPushButton:pressed { background-color: #E53935; border: 2px solid #B71C1C; } QPushButton:checked { background-color: #E53935; border: 2px solid #B71C1C; color: #FFEBEE; box-shadow: 0 0 8px rgba(239, 83, 80, 0.6); font-weight: bold; }"
+#define GREEN_BUTTON_STYLE              "QPushButton { background-color: #66BB6A; border: 2px solid #43A047; color: white; font-size: 22px; padding: 10px; border-radius: 10px; width: 100px; height: 50px; text-align: center; } QPushButton:hover { background-color: #5AAE5E; border: 2px solid #388E3C; } QPushButton:pressed { background-color: #4CAF50; border: 2px solid #2C6E2E; } QPushButton:checked { background-color: #4CAF50; border: 2px solid #2E7D32; color: #E8F5E9; box-shadow: 0 0 8px rgba(76, 175, 80, 0.6); font-weight: bold; }"
+#define REG_ADDR_OFFSET   1024
+
+
 class QByteArray;
 class QString;
 class MainWindow;

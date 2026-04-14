@@ -39,8 +39,8 @@
       <property name="title">
        <string/>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
+      <layout class="QGridLayout" name="gridLayout_2" columnminimumwidth="1,0,1,1,1,1,1,1">
+       <item row="0" column="0">
         <widget class="QGroupBox" name="groupBox_35">
          <property name="minimumSize">
           <size>
@@ -141,8 +141,14 @@ QComboBox::down-arrow {
          </layout>
         </widget>
        </item>
-       <item>
+       <item row="0" column="1">
         <widget class="QGroupBox" name="groupBox_21">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QGroupBox {
     border: none;
@@ -254,7 +260,118 @@ QComboBox::down-arrow {
          </layout>
         </widget>
        </item>
-       <item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_36">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    border: none
+}
+</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_33">
+          <item>
+           <widget class="QLabel" name="label_59">
+            <property name="maximumSize">
+             <size>
+              <width>55</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Microsoft YaHei</family>
+              <pointsize>-1</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    font-size: 15px; /* 字体大小 */
+    font-weight: bold; /* 加粗 */
+    text-align: center; /* 文本居中 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>BR</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_3">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Microsoft YaHei</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+    border: 1px solid #cccccc; /* 边框 */
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+QComboBox::drop-down {
+    border-left: 1px solid #cccccc; /* 下拉按钮的边框 */
+    width: 30px;
+}
+QComboBox::down-arrow {
+    image: url(:/icons/images/arrow_down.png); /* 您可以替换为您自己的下拉箭头图标 */
+}
+</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>38400</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>9600</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>115200</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="3">
         <widget class="QPushButton" name="connBtn">
          <property name="minimumSize">
           <size>
@@ -276,29 +393,23 @@ QComboBox::down-arrow {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: #4CAF50;
+    background-color: #66BB6A; /* 更淡的绿色 */
+    border: 2px solid #43A047;
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-QPushButton:hover {
-    background-color: #45a049;
-}
-
-QPushButton:pressed {
-    background-color: #388E3C; /* 改变颜色，表示按下状态 */
-    border: 1px solid #2E7D32; /* 添加一个边框，提升立体感 */
-}
-</string>
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}</string>
          </property>
          <property name="text">
           <string>建立连接</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="0" column="4">
         <widget class="QPushButton" name="connBtn_2">
          <property name="minimumSize">
           <size>
@@ -320,29 +431,23 @@ QPushButton:pressed {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: #4CAF50;
+    background-color: #66BB6A; /* 更淡的绿色 */
+    border: 2px solid #43A047;
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-QPushButton:hover {
-    background-color: #45a049;
-}
-
-QPushButton:pressed {
-    background-color: #388E3C; /* 改变颜色，表示按下状态 */
-    border: 1px solid #2E7D32; /* 添加一个边框，提升立体感 */
-}
-</string>
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}</string>
          </property>
          <property name="text">
           <string>刷新串口</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="0" column="5">
         <widget class="QPushButton" name="pushButton_4">
          <property name="minimumSize">
           <size>
@@ -364,29 +469,23 @@ QPushButton:pressed {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: #4CAF50;
+    background-color: #66BB6A; /* 更淡的绿色 */
+    border: 2px solid #43A047;
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-QPushButton:hover {
-    background-color: #45a049;
-}
-
-QPushButton:pressed {
-    background-color: #388E3C; /* 改变颜色，表示按下状态 */
-    border: 1px solid #2E7D32; /* 添加一个边框，提升立体感 */
-}
-</string>
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}</string>
          </property>
          <property name="text">
           <string>参数配置1</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="0" column="6">
         <widget class="QPushButton" name="pushButton_8">
          <property name="minimumSize">
           <size>
@@ -408,29 +507,23 @@ QPushButton:pressed {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: #4CAF50;
+    background-color: #66BB6A; /* 更淡的绿色 */
+    border: 2px solid #43A047;
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-QPushButton:hover {
-    background-color: #45a049;
-}
-
-QPushButton:pressed {
-    background-color: #388E3C; /* 改变颜色，表示按下状态 */
-    border: 1px solid #2E7D32; /* 添加一个边框，提升立体感 */
-}
-</string>
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}</string>
          </property>
          <property name="text">
           <string>校准界面</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="0" column="7">
         <widget class="QPushButton" name="pushButton_6">
          <property name="minimumSize">
           <size>
@@ -452,22 +545,16 @@ QPushButton:pressed {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: #4CAF50;
+    background-color: #66BB6A; /* 更淡的绿色 */
+    border: 2px solid #43A047;
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-QPushButton:hover {
-    background-color: #45a049;
-}
-
-QPushButton:pressed {
-    background-color: #388E3C; /* 改变颜色，表示按下状态 */
-    border: 1px solid #2E7D32; /* 添加一个边框，提升立体感 */
-}
-</string>
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}</string>
          </property>
          <property name="text">
           <string>调试界面</string>
@@ -2115,7 +2202,7 @@ QLineEdit:disabled {
              </font>
             </property>
             <property name="text">
-             <string> </string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -2210,7 +2297,7 @@ QLineEdit:disabled {
              </font>
             </property>
             <property name="text">
-             <string> </string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -2305,7 +2392,7 @@ QLineEdit:disabled {
              </font>
             </property>
             <property name="text">
-             <string> </string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
