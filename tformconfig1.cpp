@@ -22,26 +22,6 @@ TFormConfig1::~TFormConfig1()
 
 void TFormConfig1::refresh()
 {
-    ui->c2->blockSignals(true);
-    if(regs[2] < 2)
-    {
-        ui->c2->setCurrentIndex(regs[2]);
-    }else
-    {
-        ui->c2->setCurrentIndex(2);
-    }
-    preModeIndex = ui->c2->currentIndex();
-    ui->c2->blockSignals(false);
-    if(regs[3] == 4)
-    {
-        ui->pb3->setText("停止");
-        ui->pb3->setStyleSheet(RED_BUTTON_STYLE);
-    }else
-    {
-        ui->pb3->setText("启动");
-        ui->pb3->setStyleSheet(GREEN_BUTTON_STYLE);
-    }
-
     ui->l33->setText(QString::number(static_cast<float>(regs[33] * 1.0/ qPow(10, pows[33])), 'f', pows[33]));
     ui->l34->setText(QString::number(static_cast<float>(regs[34] * 1.0/ qPow(10, pows[34])), 'f', pows[34]));
     ui->l35->setText(QString::number(static_cast<float>(regs[35] * 1.0/ qPow(10, pows[35])), 'f', pows[35]));
@@ -63,41 +43,3 @@ void TFormConfig1::refresh()
     ui->l51->setText(QString::number(static_cast<float>(regs[51] * 1.0/ qPow(10, pows[51])), 'f', pows[51]));
     ui->l52->setText(QString::number(static_cast<float>(regs[52] * 1.0/ qPow(10, pows[52])), 'f', pows[52]));
 }
-
-void TFormConfig1::on_c2_currentIndexChanged(int index)
-{
-    if(connFlag == 0)
-    {
-        QMessageBox::information(this, tr("提示"), tr("请先建立连接!"));
-        return;
-    }
-    ui->c2->blockSignals(true);
-    ui->c2->setCurrentIndex(preModeIndex);
-    ui->c2->blockSignals(false);
-    quint16 addr = REG_ADDR_OFFSET + 2;
-    if(index < 2)
-    {
-        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), (index >> 8), (index & 0xFF));
-    }else
-    {
-        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), 0, 3);
-    }
-}
-
-void TFormConfig1::on_pb3_clicked()
-{
-    if(connFlag == 0)
-    {
-        QMessageBox::information(this, tr("提示"), tr("请先建立连接!"));
-        return;
-    }
-    quint16 addr = REG_ADDR_OFFSET + 3;
-    if(ui->pb3->text() == "启动")
-    {
-        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), 0, 4);
-    }else
-    {
-        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), 0, 5);
-    }
-}
-

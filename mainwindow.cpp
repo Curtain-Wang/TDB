@@ -271,14 +271,21 @@ void MainWindow::refreshAll()
 
 void MainWindow::refresh()
 {
+    if(regs[3] == 4)
+    {
+        ui->pb3->setText("停止");
+        ui->pb3->setStyleSheet(RED_BUTTON_STYLE);
+    }else
+    {
+        ui->pb3->setText("启动");
+        ui->pb3->setStyleSheet(GREEN_BUTTON_STYLE);
+    }
     ui->l6->setText(QString::number(static_cast<float>(regs[6] * 1.0/ qPow(10, pows[6])), 'f', pows[6]));
     ui->l7->setText(QString::number(static_cast<float>(regs[7] * 1.0/ qPow(10, pows[7])), 'f', pows[7]));
     ui->l8->setText(QString::number(static_cast<float>(regs[8] * 1.0/ qPow(10, pows[8])), 'f', pows[8]));
     ui->l9->setText(QString::number(static_cast<float>(regs[9] * 1.0/ qPow(10, pows[9])), 'f', pows[9]));
     ui->l10->setText(QString::number(static_cast<float>(regs[10] * 1.0/ qPow(10, pows[10])), 'f', pows[10]));
-    ui->l11->setText(QString::number(static_cast<float>(regs[11] * 1.0/ qPow(10, pows[11])), 'f', pows[11]));
     ui->l12->setText(QString::number(static_cast<float>(regs[12] * 1.0/ qPow(10, pows[12])), 'f', pows[12]));
-    ui->l13->setText(QString::number(static_cast<float>(regs[13] * 1.0/ qPow(10, pows[13])), 'f', pows[13]));
     ui->l14->setText(QString::number(static_cast<float>(regs[14] * 1.0/ qPow(10, pows[14])), 'f', pows[14]));
     ui->l23->setText(QString::number(static_cast<float>(regs[23] * 1.0/ qPow(10, pows[23])), 'f', pows[23]));
     ui->l24->setText(QString::number(static_cast<float>(regs[24] * 1.0/ qPow(10, pows[24])), 'f', pows[24]));
@@ -684,5 +691,23 @@ void MainWindow::on_rxResetTimer_timeout()
         "    background-color: #D3D3D3;"
         "}"
         );
+}
+
+
+void MainWindow::on_pb3_clicked()
+{
+    if(connFlag == 0)
+    {
+        QMessageBox::information(this, tr("提示"), tr("请先建立连接!"));
+        return;
+    }
+    quint16 addr = REG_ADDR_OFFSET + 3;
+    if(ui->pb3->text() == "启动")
+    {
+        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), 0, 4);
+    }else
+    {
+        mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), 0, 5);
+    }
 }
 

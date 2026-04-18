@@ -54,6 +54,8 @@ private slots:
     void on_pushButton_8_clicked();
     void on_txResetTimer_timeout();
     void on_rxResetTimer_timeout();
+    void on_pb3_clicked();
+
 private:
     Ui::MainWindow *ui;
     TForm1* tform1 = nullptr;

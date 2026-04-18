@@ -17,9 +17,6 @@ public:
     ~TFormConfig1();
     void refresh();
 private slots:
-    void on_c2_currentIndexChanged(int index);
-
-    void on_pb3_clicked();
 
 private:
     Ui::TFormConfig1 *ui;
