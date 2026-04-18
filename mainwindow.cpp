@@ -591,6 +591,7 @@ void MainWindow::on_connBtn_clicked()
         {
             connFlag = 1;
             ui->comboBox_2->setEnabled(false);
+            ui->comboBox_3->setEnabled(false);
             connectStatusLabel->setText(connStatus.arg("已连接"));
             connectStatusLabel->setStyleSheet("QLabel { background-color : green; color : white; }");
             ui->connBtn->setText("断开连接");
@@ -605,6 +606,7 @@ void MainWindow::on_connBtn_clicked()
         serialPort->close();
         connFlag = 0;
         ui->comboBox_2->setEnabled(true);
+        ui->comboBox_3->setEnabled(true);
         connectStatusLabel->setText(connStatus.arg("未连接"));
         connectStatusLabel->setStyleSheet("QLabel { background-color : red; color : white; }");
         ui->connBtn->setText("建立连接");
