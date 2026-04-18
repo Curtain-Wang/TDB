@@ -348,12 +348,12 @@ QComboBox::down-arrow {
             </property>
             <item>
              <property name="text">
-              <string>38400</string>
+              <string>9600</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>9600</string>
+              <string>38400</string>
              </property>
             </item>
             <item>
@@ -2324,7 +2324,7 @@ QLabel[status=&quot;disconnected&quot;] {
      <x>0</x>
      <y>0</y>
      <width>1368</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
