@@ -18,6 +18,8 @@ public:
     void refresh();
 private slots:
 
+    void on_c35_currentIndexChanged(int index);
+
 private:
     Ui::TFormConfig1 *ui;
     MainWindow* mainwindow;

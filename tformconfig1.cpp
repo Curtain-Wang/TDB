@@ -24,7 +24,9 @@ void TFormConfig1::refresh()
 {
     ui->l33->setText(QString::number(static_cast<float>(regs[33] * 1.0/ qPow(10, pows[33])), 'f', pows[33]));
     ui->l34->setText(QString::number(static_cast<float>(regs[34] * 1.0/ qPow(10, pows[34])), 'f', pows[34]));
-    ui->l35->setText(QString::number(static_cast<float>(regs[35] * 1.0/ qPow(10, pows[35])), 'f', pows[35]));
+    ui->c35->blockSignals(true);
+    ui->c35->setCurrentIndex(regs[35]);
+    ui->c35->blockSignals(false);
     ui->l36->setText(QString::number(static_cast<float>(regs[36] * 1.0/ qPow(10, pows[36])), 'f', pows[36]));
     ui->l37->setText(QString::number(static_cast<float>(regs[37] * 1.0/ qPow(10, pows[37])), 'f', pows[37]));
     ui->l38->setText(QString::number(static_cast<float>(regs[38] * 1.0/ qPow(10, pows[38])), 'f', pows[38]));
@@ -43,3 +45,16 @@ void TFormConfig1::refresh()
     ui->l51->setText(QString::number(static_cast<float>(regs[51] * 1.0/ qPow(10, pows[51])), 'f', pows[51]));
     ui->l52->setText(QString::number(static_cast<float>(regs[52] * 1.0/ qPow(10, pows[52])), 'f', pows[52]));
 }
+
+void TFormConfig1::on_c35_currentIndexChanged(int index)
+{
+    quint8 startHigh = (((35 + REG_ADDR_OFFSET) >> 8) & 0xFF);
+    quint8 startLow = ((35 + REG_ADDR_OFFSET) & 0xFF);
+    quint8 valueHigh = 0;
+    quint8 valueLow = index;
+    mainwindow->manualWriteOneCMDBuild(startHigh, startLow, valueHigh, valueLow);
+    ui->c35->blockSignals(true);
+    ui->c35->setCurrentIndex(regs[35]);
+    ui->c35->blockSignals(false);
+}
+
