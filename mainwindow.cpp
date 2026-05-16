@@ -285,7 +285,7 @@ void MainWindow::refresh()
     ui->l8->setText(QString::number(static_cast<float>(regs[8] * 1.0/ qPow(10, pows[8])), 'f', pows[8]));
     ui->l9->setText(QString::number(static_cast<float>(regs[9] * 1.0/ qPow(10, pows[9])), 'f', pows[9]));
     ui->l10->setText(QString::number(static_cast<float>(regs[10] * 1.0/ qPow(10, pows[10])), 'f', pows[10]));
-    ui->l11->setText(QString::number(static_cast<float>(regs[11] * 1.0/ qPow(10, pows[12])), 'f', pows[12]));
+    ui->l12->setText(QString::number(static_cast<float>(regs[12] * 1.0/ qPow(10, pows[12])), 'f', pows[12]));
     ui->l14->setText(QString::number(static_cast<float>(regs[14] * 1.0/ qPow(10, pows[14])), 'f', pows[14]));
     ui->l23->setText(QString::number(static_cast<float>(regs[23] * 1.0/ qPow(10, pows[23])), 'f', pows[23]));
     ui->l24->setText(QString::number(static_cast<float>(regs[24] * 1.0/ qPow(10, pows[24])), 'f', pows[24]));
