@@ -8,8 +8,6 @@
 #include "tform1.h"
 #include <QtMath>
 #include "tformconfig1.h"
-#include "tformconfig2.h"
-#include "tform3.h"
 #include "tform7.h"
 #include "tformcali.h"
 #include "tformrecord.h"
@@ -160,9 +158,11 @@ void MainWindow::initializeCSVFile(QTextStream &out)
     headers.append("B侧电压");
     headers.append("B侧电流");
     headers.append("B侧功率");
-    headers.append("充电mos管温度");
-    headers.append("放电mos管温度");
-    headers.append("转换效率");
+    headers.append("P侧散热器温度");
+    headers.append("电感温度1");
+    headers.append("电感温度2");
+    headers.append("电感温度3");
+    headers.append("B侧散热器温度");
     headers.append("环境温度");
     headers.append("DCDC最高温度");
     out << headers.join(",") << "\n";
@@ -174,17 +174,19 @@ void MainWindow::writeDataToCSV(QTextStream &out, const QDateTime &currentTime)
     data << currentTime.toString("yyyy-MM-dd hh:mm:ss");
     data << ui->label_39->text();
     data << ui->bms_warn_prot->text();
-    data << ui->lineEdit_0->text();
-    data << ui->lineEdit_1->text();
-    data << ui->lineEdit_2->text();
-    data << ui->lineEdit_3->text();
-    data << ui->lineEdit_4->text();
-    data << ui->lineEdit_9->text();
-    data << ui->lineEdit_6->text();
-    data << ui->lineEdit_7->text();
-    data << ui->lineEdit_10->text();
-    data << ui->lineEdit_8->text();
-    data << ui->lineEdit_5->text();
+    data << ui->l30->text();
+    data << ui->l32->text();
+    data << ui->l28->text();
+    data << ui->l29->text();
+    data << ui->l31->text();
+    data << ui->l27->text();
+    data << ui->l6->text();
+    data << ui->l7->text();
+    data << ui->l8->text();
+    data << ui->l9->text();
+    data << ui->l10->text();
+    data << ui->l12->text();
+    data << ui->l14->text();
     out << data.join(",") << "\n";
 }
 
@@ -792,6 +794,8 @@ void MainWindow::on_pb3_clicked()
     }else
     {
         mainwindow->manualWriteOneCMDBuild((addr >> 8), (addr & 0xFF), 0, 5);
+    }
+}
 void MainWindow::on_pushButton_7_clicked()
 {
     if(tformRecord == nullptr)

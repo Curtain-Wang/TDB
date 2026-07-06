@@ -15,7 +15,7 @@ const char READ_CMD = 0x03;
 const char WRITE_ONE_CMD = 0x06;
 const char WRITE_MULTIPLE_CMD = 0x10;
 const int MODULE = 0xFF;
-const int DATA_REFRESH_CYCLE = 4;
+const int DATA_REFRESH_CYCLE = 10;
 QByteArray receiveDataBuf(500, 0);
 qint16 regs[100] = {0};
 quint8 pows[61] ={

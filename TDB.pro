@@ -17,7 +17,6 @@ SOURCES += \
     tform7.cpp \
     tformcali.cpp \
     tformconfig1.cpp \
-    tformconfig2.cpp \
     tformrecord.cpp
 
 HEADERS += \
@@ -27,7 +26,7 @@ HEADERS += \
     tform1.h \
     tform7.h \
     tformcali.h \
-    tformconfig2.h \
+    tformconfig1.h \
     tformrecord.h
 
 FORMS += \
@@ -36,7 +35,6 @@ FORMS += \
     tform7.ui \
     tformcali.ui \
     tformconfig1.ui \
-    tformconfig2.ui \
     tformrecord.ui
 
 # Default rules for deployment.
