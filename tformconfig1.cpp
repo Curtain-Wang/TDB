@@ -44,6 +44,7 @@ void TFormConfig1::refresh()
     ui->l50->setText(QString::number(static_cast<float>(regs[50] * 1.0/ qPow(10, pows[50])), 'f', pows[50]));
     ui->l51->setText(QString::number(static_cast<float>(regs[51] * 1.0/ qPow(10, pows[51])), 'f', pows[51]));
     ui->l52->setText(QString::number(static_cast<float>(regs[52] * 1.0/ qPow(10, pows[52])), 'f', pows[52]));
+    ui->l2->setText(QString::number(static_cast<float>(regs[2] * 1.0/ qPow(10, pows[2])), 'f', pows[2]));
 }
 
 void TFormConfig1::on_c35_currentIndexChanged(int index)
